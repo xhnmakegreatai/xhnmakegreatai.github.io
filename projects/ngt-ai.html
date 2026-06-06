@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>NGT-AI · 多 Agent 协同决策系统 — 薛豪楠</title>
+<meta name="description" content="NGT-AI — 把社会学的名义小组技术(Nominal Group Technique)系统化应用到多 LLM 协同决策中,6 阶段结构化讨论 + 强制异构模型。" />
+<!-- 分享卡片:部署后把 og:image / twitter:image 换成绝对地址 https://你的域名/assets/og-cover.jpg -->
+<meta property="og:type" content="article" />
+<meta property="og:locale" content="zh_CN" />
+<meta property="og:title" content="NGT-AI · 多 Agent 协同决策系统" />
+<meta property="og:description" content="6 阶段结构化讨论 + 强制异构模型,从机制上对抗单模型偏见。" />
+<meta property="og:image" content="../assets/og-cover.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="../assets/og-cover.jpg" />
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg" />
+<link rel="stylesheet" href="../assets/styles.css" />
+</head>
+<body>
+
+<header class="nav" id="nav" data-screen-label="NGT-AI — Nav">
+  <div class="shell nav__inner">
+    <a class="nav__brand" href="../index.html">薛豪楠<small>Hao-Nan Xue</small></a>
+    <nav class="nav__links">
+      <a href="../index.html#projects" class="is-active">项目</a>
+      <a href="../about.html">关于</a>
+      <a href="../index.html#contact">联系</a>
+    </nav>
+  </div>
+</header>
+
+<main class="shell detail" data-screen-label="Project · NGT-AI">
+
+  <a class="detail__back" href="../index.html#projects">返回项目列表</a>
+
+  <div class="detail__crumb"><span class="accent">PROJECT 03</span> · 多 AGENT 协同 · 原创方法论 · 开源</div>
+  <h1 class="detail__title">NGT-AI <em>· 多 Agent 协同决策系统</em></h1>
+  <p class="detail__subtitle">类型:开源项目 · 状态:已发布在 GitHub</p>
+
+  <p class="detail__lede">
+    把社会学的名义小组技术(Nominal Group Technique)<br />
+    系统化应用到多 LLM 协同决策中——<br />
+    通过 6 阶段结构化讨论 + 强制使用异构模型,<br />
+    从机制上对抗单模型偏见。
+  </p>
+
+  <!-- 问题 -->
+  <section class="chapter">
+    <div class="chapter__num">01 · 问题</div>
+    <h2 class="chapter__title">客户场景与真实痛点</h2>
+    <p>复杂决策场景中,单一 LLM 容易出现「偏见固执」——给出看似合理但忽略了关键反方观点的答案。用户追问时,模型会用更精致的论证维护原观点,而不是真正反思。</p>
+    <p>这不是某个具体模型的缺陷,是单模型架构的结构性问题:一个模型只有一个「世界观」,再聪明也只是单一视角。</p>
+    <p>现有的「多 Agent 系统」大多数是同一模型扮演不同角色,这种「假多元」在面对真正复杂的决策时,会因为底层模型一致而产生群体偏见——4 个 GPT 角色不会比 1 个 GPT 角色多多少视角。</p>
+  </section>
+
+  <!-- 设计 -->
+  <section class="chapter">
+    <div class="chapter__num">02 · 设计</div>
+    <h2 class="chapter__title">产品逻辑与技术架构</h2>
+    <p>借鉴社会学的名义小组技术(NGT,1968 年由 Andre Delbecq 提出),一种用于避免群体决策中「从众效应」和「权威效应」的结构化方法。把这个方法应用到多 LLM 协同上,用强制的「独立产出 → 互不可见 → 交叉评分 → 立场表态 → 综合裁定」流程,让多个 AI 形成真正的多元视角。</p>
+
+    <div class="subhead">技术架构 · 6 阶段流程</div>
+    <ol class="steps">
+      <li><b>独立观点产出</b><span>4 个 Discussant 各自独立思考,不接收其他人的输出</span></li>
+      <li><b>互不可见的方案输出</b><span>4 个 Discussant 各自给出完整方案,系统隔离不交互</span></li>
+      <li><b>交叉评分</b><span>每个 Discussant 给其他三个评分,不能给自己评分</span></li>
+      <li><b>看到评分</b><span>评分结果公开,每个 Discussant 看到自己被评的分数</span></li>
+      <li><b>立场表态(REVISED / DEFENDED)</b><span>每个 Discussant 必须选择:修订观点 或 坚持原观点(并说明理由)</span></li>
+      <li><b>Referee 综合</b><span>一个独立的 Referee 模型基于完整过程做综合裁定</span></li>
+    </ol>
+  </section>
+
+  <!-- 演示 -->
+  <section class="chapter">
+    <div class="chapter__num">03 · 演示</div>
+    <h2 class="chapter__title">一次完整运行</h2>
+    <div class="ngt">
+      <div class="ngt__head">
+        <div class="ngt__title">示例决策 · 「初创公司研发资源分配」</div>
+        <div class="ngt__time">耗时 <b>6.09s</b></div>
+      </div>
+      <div class="ngt__grid">
+        <div class="ngt__disc"><span class="who">GPT</span><span class="right"><span class="ngt__score">86</span><span class="ngt__badge">DEFENDED</span></span></div>
+        <div class="ngt__disc"><span class="who">Gemini</span><span class="right"><span class="ngt__score">84</span><span class="ngt__badge">DEFENDED</span></span></div>
+        <div class="ngt__disc"><span class="who">DeepSeek</span><span class="right"><span class="ngt__score">85</span><span class="ngt__badge">DEFENDED</span></span></div>
+        <div class="ngt__disc"><span class="who">Qwen</span><span class="right"><span class="ngt__score">85</span><span class="ngt__badge">DEFENDED</span></span></div>
+      </div>
+      <div class="ngt__foot">
+        <span>6 阶段全部完成</span>
+        <span>均分 <b>85</b></span>
+        <span>4 / 4 坚持原观点</span>
+        <span>Referee 已裁定</span>
+      </div>
+    </div>
+    <p class="demo__caption">静态示意 — 可替换为终端运行录屏(asciinema / GIF)或完整决策报告截图。</p>
+  </section>
+
+  <!-- 取舍 -->
+  <section class="chapter">
+    <div class="chapter__num">04 · 取舍</div>
+    <h2 class="chapter__title">哪些路没走,为什么</h2>
+
+    <div class="tradeoff">
+      <div class="tradeoff__q">为什么强制 4 个 Discussant 使用不同厂商的模型?</div>
+      <p>这是整个系统的关键设计——GPT / Gemini / DeepSeek / Qwen 四个不同厂商的模型,训练数据、价值观倾向、推理风格都不同,它们的「独立观点」才是真正的独立。</p>
+      <p>用 4 个 GPT 扮演不同角色,得到的还是 GPT 的视角。异构是多元的物理基础,不是修辞。</p>
+    </div>
+
+    <div class="tradeoff">
+      <div class="tradeoff__q">为什么「互不可见」阶段不允许 Agent 之间交流?</div>
+      <p>这是 NGT 原始方法论的核心——一旦让 Agent 之间互相讨论,先发言者的观点会锚定后发言者,多元视角会快速收敛为单一视角。</p>
+      <p>互不可见不是不沟通,是为了沟通的质量。</p>
+    </div>
+
+    <div class="tradeoff">
+      <div class="tradeoff__q">REVISED / DEFENDED 为什么要二选一,不允许中间态?</div>
+      <p>真实决策中,「我觉得有点对又有点不对」是噪音,不是观点。强制二选一让每个 Discussant 必须做出明确表态,这些明确表态才能被 Referee 用来综合。</p>
+      <p>模糊的中间态会让综合环节失去信号。</p>
+    </div>
+  </section>
+
+  <!-- 现状 -->
+  <section class="chapter">
+    <div class="chapter__num">05 · 现状</div>
+    <h2 class="chapter__title">部署状态与可见性</h2>
+    <p>开源项目,已发布在 GitHub。</p>
+    <p>一个示例报告(「初创公司研发资源分配」决策):<span class="mono" style="color:var(--ink);font-size:0.92rem;">6.09 秒</span>完成全流程,4 个 Discussant 全部 <span class="mono" style="color:var(--accent-deep);font-size:0.92rem;">DEFENDED</span>,均分 <span class="mono tabular" style="color:var(--ink);font-size:0.92rem;">85</span>。</p>
+    <div class="detail__status">
+      <a class="detail__link" href="https://github.com/xhnmakegreatai/NGT-AI" target="_blank" rel="noopener">github.com/xhnmakegreatai/NGT-AI &nbsp;↗</a>
+    </div>
+  </section>
+
+  <nav class="pager" data-screen-label="Pager">
+    <a href="policy-observer.html"><span class="label">← 上一个</span><span class="name">policy-observer</span></a>
+    <a href="../index.html#projects"><span class="label">回到全部 →</span><span class="name">项目列表</span></a>
+  </nav>
+
+</main>
+
+<footer class="foot">
+  <div class="shell foot__inner">
+    <span>© 2026 薛豪楠 · Hao-Nan Xue</span>
+    <span>纯静态 · 无追踪 · 无 Cookie</span>
+  </div>
+</footer>
+
+<script>
+  const nav = document.getElementById('nav');
+  const onScroll = () => nav.classList.toggle('is-scrolled', window.scrollY > 8);
+  document.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+</script>
+
+</body>
+</html>

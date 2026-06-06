@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>amzagent · 亚马逊关键词分析 Agent 流水线 — 薛豪楠</title>
+<meta name="description" content="amzagent — 把亚马逊运营 3–5 天的关键词分析与竞品研究工作,压缩为 30 分钟的自动化 Agent 流水线。" />
+<!-- 分享卡片:部署后把 og:image / twitter:image 换成绝对地址 https://你的域名/assets/og-cover.jpg -->
+<meta property="og:type" content="article" />
+<meta property="og:locale" content="zh_CN" />
+<meta property="og:title" content="amzagent · 亚马逊关键词分析 Agent 流水线" />
+<meta property="og:description" content="把亚马逊运营 3–5 天的关键词分析与竞品研究工作,压缩为 30 分钟的自动化 Agent 流水线。" />
+<meta property="og:image" content="../assets/og-cover.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="../assets/og-cover.jpg" />
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg" />
+<link rel="stylesheet" href="../assets/styles.css" />
+</head>
+<body>
+
+<header class="nav" id="nav" data-screen-label="amzagent — Nav">
+  <div class="shell nav__inner">
+    <a class="nav__brand" href="../index.html">薛豪楠<small>Hao-Nan Xue</small></a>
+    <nav class="nav__links">
+      <a href="../index.html#projects" class="is-active">项目</a>
+      <a href="../about.html">关于</a>
+      <a href="../index.html#contact">联系</a>
+    </nav>
+  </div>
+</header>
+
+<main class="shell detail" data-screen-label="Project · amzagent">
+
+  <a class="detail__back" href="../index.html#projects">返回项目列表</a>
+
+  <div class="detail__crumb"><span class="accent">PROJECT 01</span> · 跨境电商 · AGENT 工作流 · 已部署</div>
+  <h1 class="detail__title">amzagent <em>· 亚马逊关键词分析 Agent 流水线</em></h1>
+  <p class="detail__subtitle">客户类型:亚马逊跨境电商运营 · 状态:真实部署,持续迭代</p>
+
+  <p class="detail__lede">
+    把亚马逊运营 3–5 天的关键词分析与竞品研究工作,<br />
+    压缩为单次约 30 分钟的自动化 Agent 流水线,<br />
+    产出三份可直接落地的运营报告。
+  </p>
+
+  <!-- 问题 -->
+  <section class="chapter">
+    <div class="chapter__num">01 · 问题</div>
+    <h2 class="chapter__title">客户场景与真实痛点</h2>
+    <p>亚马逊运营在做新品上架前的关键词分析与竞品研究时,平均花费 3–5 天完成一次完整调研——大部分时间是在重复机械的「数据搬运 + 经验判断」上,真正的策略思考反而被挤压。</p>
+    <p>更深层的问题是:这种判断主要靠运营人员的经验,缺乏结构化方法。同一个产品交给两个不同的运营,得出的关键词矩阵可能完全不同;团队扩张时新人很难快速复用老人的判断逻辑。</p>
+    <p>我接触的几位运营都表达过同一个痛点:「我知道哪些动作是必须做的,但每次做完都觉得自己只是个执行工具——我希望把这部分外包给系统。」</p>
+  </section>
+
+  <!-- 设计 -->
+  <section class="chapter">
+    <div class="chapter__num">02 · 设计</div>
+    <h2 class="chapter__title">产品逻辑与技术架构</h2>
+    <p>把运营的判断流程拆解为 7 个有顺序的步骤,每一步用 AI Agent 替代重复判断,最终产出三份结构化报告。</p>
+
+    <div class="subhead">技术架构 · 7 步骤流水线</div>
+    <ol class="steps">
+      <li><b>数据清洗</b><span>处理原始关键词数据,统一格式</span></li>
+      <li><b>Rufus 解析</b><span>调用 Amazon Rufus 提取关键产品信息</span></li>
+      <li><b>产品拆解</b><span>把竞品的卖点、定位、目标人群结构化</span></li>
+      <li><b>匹配度对比</b><span>用「蓝海 / 红海 / 差距 / 中性」四标签模型评估每个关键词</span></li>
+      <li><b>三级关键词过滤</b><span>按重要性分层:核心词 / 扩展词 / 长尾词</span></li>
+      <li><b>词根整理</b><span>提取关键词背后的语义簇,辅助 Listing 撰写</span></li>
+      <li><b>报告生成</b><span>产出三份报告:关键词矩阵 / 竞品分析 / 运营建议</span></li>
+    </ol>
+  </section>
+
+  <!-- 演示 -->
+  <section class="chapter">
+    <div class="chapter__num">03 · 演示</div>
+    <h2 class="chapter__title">产出长什么样</h2>
+    <div class="demo demo--grid">
+      <div class="demo__cell"><div class="demo__placeholder"><b>01 · 关键词矩阵</b>四标签视图截图<br />(脱敏 · 长边 2400px)</div></div>
+      <div class="demo__cell"><div class="demo__placeholder"><b>02 · 竞品拆解</b>卖点 / 定位卡片截图</div></div>
+      <div class="demo__cell"><div class="demo__placeholder"><b>03 · 运营建议</b>建议列表截图</div></div>
+      <div class="demo__cell"><div class="demo__placeholder"><b>04 · 报告封面</b>三份报告目录</div></div>
+    </div>
+    <p class="demo__caption">占位 — 替换为 3–4 张脱敏报告截图(客户名 / ASIN / 真实关键词需打码)。</p>
+  </section>
+
+  <!-- 取舍 -->
+  <section class="chapter">
+    <div class="chapter__num">04 · 取舍</div>
+    <h2 class="chapter__title">哪些路没走,为什么</h2>
+
+    <div class="tradeoff">
+      <div class="tradeoff__q">为什么是四标签匹配度模型,而不是 0–100 评分?</div>
+      <p>单一数字评分让运营人员需要做二次判断(「75 分到底要不要做?」),而 蓝海 / 红海 / 差距 / 中性 四个标签直接对应决策动作——蓝海做、红海避、差距补、中性观察。产品语言要对齐用户语言,不是产品语言更「专业」。</p>
+    </div>
+
+    <div class="tradeoff">
+      <div class="tradeoff__q">为什么把流程拆成 7 步,而不是端到端一个大模型?</div>
+      <p>端到端模型不可调试。一旦输出不对,运营不知道是哪一步出错,只能整体推翻。分成 7 步之后,每一步的产出都可以单独检查、单独优化、单独让运营介入。这是 ToB 工作流系统的核心设计原则。</p>
+    </div>
+
+    <div class="tradeoff">
+      <div class="tradeoff__q">为什么产出三份报告,而不是一份大报告?</div>
+      <p>三份报告对应三个不同的使用场景:关键词矩阵给采购看,竞品分析给老板看,运营建议给执行同事看。同一个文档给不同人看,没有人会真的读完。</p>
+    </div>
+  </section>
+
+  <!-- 现状 -->
+  <section class="chapter">
+    <div class="chapter__num">05 · 现状</div>
+    <h2 class="chapter__title">部署状态与可见性</h2>
+    <p>已在跨境电商运营场景中部署使用,持续迭代。涉及客户的业务数据不公开,代码仓库见 GitHub。</p>
+    <div class="detail__status">
+      <a class="detail__link" href="https://github.com/xhnmakegreatai/amzagent" target="_blank" rel="noopener">github.com/xhnmakegreatai/amzagent &nbsp;↗</a>
+    </div>
+  </section>
+
+  <!-- Pager -->
+  <nav class="pager" data-screen-label="Pager">
+    <a href="../index.html#projects"><span class="label">← 全部项目</span><span class="name">项目列表</span></a>
+    <a href="policy-observer.html"><span class="label">下一个 →</span><span class="name">policy-observer</span></a>
+  </nav>
+
+</main>
+
+<footer class="foot">
+  <div class="shell foot__inner">
+    <span>© 2026 薛豪楠 · Hao-Nan Xue</span>
+    <span>纯静态 · 无追踪 · 无 Cookie</span>
+  </div>
+</footer>
+
+<script>
+  const nav = document.getElementById('nav');
+  const onScroll = () => nav.classList.toggle('is-scrolled', window.scrollY > 8);
+  document.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+</script>
+
+</body>
+</html>

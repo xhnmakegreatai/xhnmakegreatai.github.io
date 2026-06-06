@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>policy-observer · 双引擎跨国政策研判系统 — 薛豪楠</title>
+<meta name="description" content="policy-observer — 双引擎跨国政策研判系统。国产 LLM 解读国内政策语境,海外 LLM 理解地缘叙事,综合层做交叉研判。" />
+<!-- 分享卡片:部署后把 og:image / twitter:image 换成绝对地址 https://你的域名/assets/og-cover.jpg -->
+<meta property="og:type" content="article" />
+<meta property="og:locale" content="zh_CN" />
+<meta property="og:title" content="policy-observer · 双引擎跨国政策研判系统" />
+<meta property="og:description" content="国产 LLM 解读国内政策语境,海外 LLM 理解地缘叙事,综合层做交叉研判。" />
+<meta property="og:image" content="../assets/og-cover.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="../assets/og-cover.jpg" />
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg" />
+<link rel="stylesheet" href="../assets/styles.css" />
+</head>
+<body>
+
+<header class="nav" id="nav" data-screen-label="policy-observer — Nav">
+  <div class="shell nav__inner">
+    <a class="nav__brand" href="../index.html">薛豪楠<small>Hao-Nan Xue</small></a>
+    <nav class="nav__links">
+      <a href="../index.html#projects" class="is-active">项目</a>
+      <a href="../about.html">关于</a>
+      <a href="../index.html#contact">联系</a>
+    </nav>
+  </div>
+</header>
+
+<main class="shell detail" data-screen-label="Project · policy-observer">
+
+  <a class="detail__back" href="../index.html#projects">返回项目列表</a>
+
+  <div class="detail__crumb"><span class="accent">PROJECT 02</span> · 跨国政策研判 · 双引擎架构 · MULTI-AGENT</div>
+  <h1 class="detail__title">policy-observer <em>· 双引擎跨国政策研判系统</em></h1>
+  <p class="detail__subtitle">客户类型:政策敏感行业(医药 / 能源 / 跨境贸易 / 教育)· 状态:设计与原型完成,持续磨合中</p>
+
+  <p class="detail__lede">
+    双引擎跨国政策研判系统——<br />
+    国产 LLM 解读国内政策语境,海外 LLM 理解地缘叙事,<br />
+    综合层做交叉研判,NGT 作为深度研判插件。
+  </p>
+
+  <!-- 问题 -->
+  <section class="chapter">
+    <div class="chapter__num">01 · 问题</div>
+    <h2 class="chapter__title">客户场景与真实痛点</h2>
+    <p>政策敏感行业(医药、能源、跨境贸易、教育等)对政策动向高度依赖,一条新政可能直接决定一个业务方向能不能继续做。</p>
+    <p>但单一信息源和单一模型容易产生偏差——国产模型对国内政策语境理解深,但对国际地缘叙事相对弱;海外模型对国际视角理解深,但对中文政策的「语境密度」识别有限。</p>
+    <p>客户描述的真实痛点是:「我们订了好几个研究服务,每家都说自己的视角对,但我没法判断到底信谁。我想要的不是更多信息,是更可靠的对比与综合。」</p>
+  </section>
+
+  <!-- 设计 -->
+  <section class="chapter">
+    <div class="chapter__num">02 · 设计</div>
+    <h2 class="chapter__title">产品逻辑与技术架构</h2>
+    <p>双引擎并行,综合层裁定。国内观察站用国产 LLM 处理国内政策原文,全球观察站用海外 LLM 处理国际媒体与政策分析,综合引擎做交叉研判产出最终结论。NGT-AI 作为深度研判插件,处理复杂决策场景。</p>
+
+    <div class="subhead">技术架构 · 三节点 + 插件</div>
+    <ul class="nodes">
+      <li><b>Node A</b><span><strong style="color:var(--ink);font-weight:500">国内观察站</strong> — 国产模型,负责中文政策原文解读与本土语境</span></li>
+      <li><b>Node B</b><span><strong style="color:var(--ink);font-weight:500">全球观察站</strong> — 海外模型,负责国际叙事与跨国视角</span></li>
+      <li><b>Node C</b><span><strong style="color:var(--ink);font-weight:500">综合引擎</strong> — 接收 A / B 的产出,做交叉研判</span></li>
+      <li><b>+ NGT</b><span><strong style="color:var(--ink);font-weight:500">深度研判插件</strong> — 对高复杂度决策启用 6 阶段多 Agent 协同</span></li>
+      <li><b>解耦</b><span>三个节点可独立调用,也可组合订阅</span></li>
+    </ul>
+  </section>
+
+  <!-- 架构图 -->
+  <section class="chapter">
+    <div class="chapter__num">03 · 架构图</div>
+    <h2 class="chapter__title">数据如何流动</h2>
+    <div class="arch">
+      <div class="arch__row arch__row--two">
+        <div class="arch__box"><span class="arch__tag">NODE A</span><b>国内观察站</b><small>国产 LLM · 中文政策原文</small></div>
+        <div class="arch__box"><span class="arch__tag">NODE B</span><b>全球观察站</b><small>海外 LLM · 国际地缘叙事</small></div>
+      </div>
+      <div class="arch__merge" aria-hidden="true"></div>
+      <div class="arch__row">
+        <div class="arch__box arch__box--accent"><span class="arch__tag">NODE C</span><b>综合引擎</b><small>接收 A / B 产出 · 交叉研判</small></div>
+      </div>
+      <div class="arch__line" aria-hidden="true"></div>
+      <div class="arch__row">
+        <div class="arch__box arch__box--plugin"><span class="arch__tag">PLUGIN</span><b>NGT-AI 深度研判插件</b><small>仅重大决策点启用 · 6 阶段多 Agent 协同</small></div>
+      </div>
+    </div>
+    <p class="demo__caption">双引擎并行输出 → 综合层交叉裁定。三个节点可独立调用，也可组合订阅。</p>
+  </section>
+
+  <!-- 取舍 -->
+  <section class="chapter">
+    <div class="chapter__num">04 · 取舍</div>
+    <h2 class="chapter__title">哪些路没走,为什么</h2>
+
+    <div class="tradeoff">
+      <div class="tradeoff__q">为什么是模块化订阅,而不是强制打包?</div>
+      <p>不同客户对政策研判的颗粒度需求差异极大——小型企业可能只需要「国内观察」日报,大型机构需要全套综合研判。强制打包会让小客户买不起、大客户觉得不够细。</p>
+      <p>解耦设计让产品的客单价区间从一开始就能拉开,客户预算决定订阅深度。</p>
+    </div>
+
+    <div class="tradeoff">
+      <div class="tradeoff__q">为什么把 NGT 设计成「插件」而不是核心流程?</div>
+      <p>早期方案是把 NGT 写死在工作流里,每次研判都跑 6 阶段流程。后来发现:大部分日常政策追踪不需要 6 阶段深度协商,只有「重大决策点」(比如要不要进入某市场)才需要。</p>
+      <p>把 NGT 设计成插件后,系统的响应速度和算力成本都显著优化,同时保留了「必要时启用深度研判」的能力。</p>
+    </div>
+
+    <div class="tradeoff">
+      <div class="tradeoff__q">关于「双引擎」是否冗余</div>
+      <p>有人会问「用一个强大的模型不就行了吗」。但实际测试中,同一份政策文本,国产模型和海外模型的解读会在关键判断上分叉——分叉本身就是信号。</p>
+      <p>双引擎不是冗余,是结构化的「压力测试」。</p>
+    </div>
+  </section>
+
+  <!-- 现状 -->
+  <section class="chapter">
+    <div class="chapter__num">05 · 现状</div>
+    <h2 class="chapter__title">部署状态与可见性</h2>
+    <p>设计与原型完成,在与目标行业场景持续磨合中。具体客户与部署细节不公开,代码仓库见 GitHub。</p>
+    <div class="detail__status">
+      <a class="detail__link" href="https://github.com/xhnmakegreatai/policy-observer" target="_blank" rel="noopener">github.com/xhnmakegreatai/policy-observer &nbsp;↗</a>
+    </div>
+  </section>
+
+  <nav class="pager" data-screen-label="Pager">
+    <a href="amzagent.html"><span class="label">← 上一个</span><span class="name">amzagent</span></a>
+    <a href="ngt-ai.html"><span class="label">下一个 →</span><span class="name">NGT-AI</span></a>
+  </nav>
+
+</main>
+
+<footer class="foot">
+  <div class="shell foot__inner">
+    <span>© 2026 薛豪楠 · Hao-Nan Xue</span>
+    <span>纯静态 · 无追踪 · 无 Cookie</span>
+  </div>
+</footer>
+
+<script>
+  const nav = document.getElementById('nav');
+  const onScroll = () => nav.classList.toggle('is-scrolled', window.scrollY > 8);
+  document.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+</script>
+
+</body>
+</html>
