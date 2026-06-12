@@ -567,6 +567,10 @@ a.section__meta:hover { color: var(--accent-deep); }
   display: grid; place-items: center;
   font-family: var(--mono); font-size: 0.7rem; color: var(--ink-fade); letter-spacing: 0.05em;
 }
+.wechat-popover .qr-img {
+  width: 180px; height: 180px; margin: 0 auto;
+  border: 1px solid var(--rule); border-radius: 12px; display: block;
+}
 .wechat-popover .qr-caption { font-size: 0.78rem; color: var(--ink-mute); margin-top: 0.6rem; }
 
 /* Project detail pages
