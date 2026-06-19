@@ -89,9 +89,30 @@
     <p class="demo__caption">双引擎并行输出 → 综合层交叉裁定。三个节点可独立调用，也可组合订阅。</p>
   </section>
 
+  <!-- 演示 -->
+  <section class="chapter">
+    <div class="chapter__num">04 · 演示</div>
+    <h2 class="chapter__title">真实研究样张 · 与我怎么验它</h2>
+    <p>架构讲完,关键是它产出的东西能不能信。这里放一份真实研判样张(信源为公开政策原文,已脱敏),以及我专门用来拷问它的方法。</p>
+
+    <div class="subhead">样张 · 棉花目标价格政策研判(节选)</div>
+    <div class="sample">
+      <div class="sample__src">信源:发改价格〔2026〕733号 · 公开政策原文(733 字)</div>
+      <p class="sample__lead">核心研判:政策本质从「保量稳价」切换为「控水提质 + 精准补贴 + 直售通道」——18600 元/吨目标价与 510 万吨固定补贴产量锁定基本盘,通过「非优势区退出 + 地下水超采调减」实施结构性收缩。</p>
+      <ul class="sample__pts">
+        <li><b>二阶效应</b><span>补贴固定化 + 质量导向,加速产业集团化整合;下游为规避目的国合规,转向「优质棉内销 + 进口棉出口」双轨,推高内贸优质棉溢价。</span></li>
+        <li><b>风险点</b><span>固定补贴 + 目标价机制,易被目的国援引 WTO《SCM 协定》认定为「可诉补贴」——出口企业需提前准备补贴性质界定的法律意见。</span></li>
+      </ul>
+    </div>
+
+    <div class="subhead">我怎么验它 · 接地度盲评</div>
+    <p>我没有止步于「能产出报告」。我把同一份政策喂给不同模型做盲评,专门查<strong style="color:var(--ink);font-weight:600">接地度</strong>——它说的每个数字(目标价 18600、固定产量 510 万吨…)能不能在信源原文里逐条找到?有没有冒出原文没有的「具体数据」?凡是查不到、又说得很具体的,就是疑似编造。</p>
+    <p class="demo__caption">「能不能在原文里找到」这一关,才是决策类 AI 可不可信的分水岭。对系统更深一层的质量自审,见下方「现状」。</p>
+  </section>
+
   <!-- 取舍 -->
   <section class="chapter">
-    <div class="chapter__num">04 · 取舍</div>
+    <div class="chapter__num">05 · 取舍</div>
     <h2 class="chapter__title">哪些路没走,为什么</h2>
 
     <div class="tradeoff">
@@ -115,7 +136,7 @@
 
   <!-- 现状 -->
   <section class="chapter">
-    <div class="chapter__num">05 · 现状</div>
+    <div class="chapter__num">06 · 现状</div>
     <h2 class="chapter__title">部署状态与可见性</h2>
     <p>设计与原型完成(5 包架构 + 115 个测试),在与目标行业场景持续磨合中。具体客户与部署细节不公开,代码仓库见 GitHub。</p>
     <p>比起「看起来能用」,我更在意它「什么时候不该被信任」——我对它做过一次投资人级的质量自审,主动揪出「检索不到相关证据却仍自信研判」的问题,并定下三条修正方向:检索失败即熔断、可信度评分纳入信源相关性、强制量化与证伪条件。对决策类 AI,这种「知道自己何时不可信」的能力,才是真正的护城河。</p>
