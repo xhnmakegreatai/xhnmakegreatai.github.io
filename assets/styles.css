@@ -960,6 +960,32 @@ a.section__meta:hover { color: var(--accent-deep); }
   .sample__pts li { grid-template-columns: 1fr; gap: 0.2rem; }
 }
 
+/* 演示截图 / 录屏(项目详情页)
+   -------------------------------------------------------------------------- */
+.shot { margin: 0 0 1rem; }
+.shot img, .shot video {
+  width: 100%; display: block;
+  border: 1px solid var(--rule); border-radius: 12px; background: var(--bg-card);
+}
+.shot figcaption {
+  margin-top: 0.55rem;
+  font-family: var(--sans-cn); font-size: 0.86rem; color: var(--ink-fade);
+  letter-spacing: -0.01em; line-height: 1.5;
+}
+.shot--video { margin-top: 1rem; }
+/* 占位:视频未放时 video 标签内的兜底块 */
+.shot__ph {
+  aspect-ratio: 16 / 10; display: grid; place-items: center; text-align: center;
+  background: var(--bg-card); border: 1px dashed var(--rule); border-radius: 12px;
+  font-family: var(--sans-cn); font-size: 0.95rem; color: var(--ink-mute); padding: 1.5rem;
+}
+.shot__ph small {
+  display: block; margin-top: 0.5rem; font-family: var(--mono);
+  font-size: 0.72rem; color: var(--ink-fade); letter-spacing: 0;
+}
+.shots-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-top: 0.5rem; }
+@media (max-width: 560px) { .shots-2 { grid-template-columns: 1fr; } }
+
 /* Footer
    -------------------------------------------------------------------------- */
 .foot {
