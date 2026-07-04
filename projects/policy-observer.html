@@ -95,25 +95,19 @@
     <h2 class="chapter__title">真实研究样张 · 与我怎么验它</h2>
     <p>架构讲完,关键是它产出的东西能不能信。这里放一段真实运行录屏、两张关键产出截图,以及我专门用来拷问它的方法。</p>
 
-    <!-- 录屏:提交问题 → 生成四层研判(放 assets/po-demo.mp4 或 .gif 即显示) -->
+    <!-- 录屏:真实前端发起研判 → 生成四层研判报告 -->
     <figure class="shot shot--video">
-      <video src="../assets/po-demo.mp4" poster="../assets/po-demo-poster.jpg" controls muted playsinline preload="none">
-        <div class="shot__ph">▶ 运行录屏 · 提交政策问题 → 系统现生成四层研判<small>占位:把 assets/po-demo.mp4 放进去即显示</small></div>
+      <video src="../assets/po-demo.mp4" controls muted playsinline preload="metadata">
+        <div class="shot__ph">▶ 运行录屏 · 前端发起研判 → 生成四层研判报告</div>
       </video>
-      <figcaption>30 秒真实运行:在 /docs 提交「棉花目标价格政策」→ 打开报告页 → 滚动查看带信源引用的四层研判。</figcaption>
+      <figcaption>真实运行录屏:在前端发起一次政策研判 → 系统现生成四层研判报告(中国 / 全球 / 综合 / NGT)。</figcaption>
     </figure>
 
-    <!-- 两张关键截图:完整研判 + 熔断诚实 -->
-    <div class="shots-2">
-      <figure class="shot">
-        <img src="../assets/po-report.png" alt="policy-observer 完整研判报告(带信源引用)" loading="lazy" />
-        <figcaption>① 完整研判:结论逐条带信源引用 [1],数字可回溯原文。</figcaption>
-      </figure>
-      <figure class="shot">
-        <img src="../assets/po-fallback.png" alt="policy-observer 检索熔断:拒绝无据研判" loading="lazy" />
-        <figcaption>② 检索熔断:库里查不到相关信源时,系统拒绝研判而非编造——「知道自己何时不可信」。</figcaption>
-      </figure>
-    </div>
+    <!-- 研判报告样张 -->
+    <figure class="shot">
+      <img src="../assets/po-report.png" alt="policy-observer 研判报告样张" loading="lazy" />
+      <figcaption>研判报告样张(「千帆星座」组网卫星政策):四层视角逐层展开,结论带信源引用、可回溯原文。</figcaption>
+    </figure>
 
     <div class="subhead">样张 · 棉花目标价格政策研判(节选)</div>
     <div class="sample">
