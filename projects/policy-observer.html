@@ -23,6 +23,7 @@
     <a class="nav__brand" href="../index.html">薛豪楠<small>Hao-Nan Xue</small></a>
     <nav class="nav__links">
       <a href="../index.html#projects" class="is-active">项目</a>
+      <a href="../agent.html">Agent</a>
       <a href="../about.html">关于</a>
       <a href="../index.html#contact">联系</a>
     </nav>
@@ -102,16 +103,14 @@
       <figcaption>真实运行录屏:在前端发起一次政策研判 → 系统现生成四层研判报告(中国 / 全球 / 综合 / NGT)。</figcaption>
     </figure>
 
-    <div class="shots-2">
-      <figure class="shot">
-        <img src="../assets/po-report.png" alt="集成电路税收优惠研判报告(信源依据)" loading="lazy" />
-        <figcaption>① 完整研判(「集成电路企业税收优惠」):顶部列「信源依据」而非一个笼统评分;相关性 1/1,结论带信源引用、可回溯原文。</figcaption>
-      </figure>
-      <figure class="shot">
-        <img src="../assets/po-fallback.png" alt="检索熔断:拒绝无据研判" loading="lazy" />
-        <figcaption>② 检索熔断:查不到相关信源时,系统明说「无法据此研判」、拒绝在无证据下臆测——知道自己何时不可信。</figcaption>
-      </figure>
-    </div>
+    <figure class="shot">
+      <img src="../assets/po-report.png" alt="集成电路税收优惠研判报告(信源依据)" loading="lazy" />
+      <figcaption>① 完整研判(「集成电路企业税收优惠」):顶部列「信源依据」而非一个笼统评分;相关性 1/1,结论带信源引用、可回溯原文。</figcaption>
+    </figure>
+    <figure class="shot">
+      <img src="../assets/po-fallback.png" alt="检索熔断:拒绝无据研判" loading="lazy" />
+      <figcaption>② 检索熔断:查不到相关信源时,系统明说「无法据此研判」、拒绝在无证据下臆测——知道自己何时不可信。</figcaption>
+    </figure>
 
     <div class="subhead">设计思路 · 以「集成电路税收优惠」为例</div>
     <p>这个查询最能说明系统的「接地度」设计。政策库里其实混着一堆「进口税收优惠」「跨境电商退税」政策——它们都蹭到了「税收 / 优惠」这种<strong style="color:var(--ink);font-weight:600">通用政策工具词</strong>,一不小心就被当成相关信源凑数,让研判看起来「有据」实则跑题。</p>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Agent 工程 · 我怎么理解 Agent — 薛豪楠</title>
+<meta name="description" content="薛豪楠对 Agent 的理解:Agent 是需要工程化的 harness,不是更聪明的 prompt。重心在 harness 设计、工程化上下文(Context Engineering)、用结果评估驱动迭代。附《从零构建 Agent》技术手册下载。" />
+<!-- 分享卡片:部署后把 og:image / twitter:image 换成绝对地址 https://你的域名/assets/og-cover.jpg -->
+<meta property="og:type" content="article" />
+<meta property="og:locale" content="zh_CN" />
+<meta property="og:title" content="Agent 工程 · 我怎么理解 Agent" />
+<meta property="og:description" content="Agent 是需要工程化的 harness,不是更聪明的 prompt。harness 设计 + 工程化上下文 + eval 驱动迭代。附《从零构建 Agent》手册下载。" />
+<meta property="og:image" content="https://xhnmakegreatai.github.io/assets/og-cover.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://xhnmakegreatai.github.io/assets/og-cover.jpg" />
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+<link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+
+<header class="nav" id="nav" data-screen-label="Agent — Nav">
+  <div class="shell nav__inner">
+    <a class="nav__brand" href="index.html">薛豪楠<small>Hao-Nan Xue</small></a>
+    <nav class="nav__links">
+      <a href="index.html#projects">项目</a>
+      <a href="agent.html" class="is-active">Agent</a>
+      <a href="about.html">关于</a>
+      <a href="index.html#contact">联系</a>
+    </nav>
+  </div>
+</header>
+
+<main class="shell about-page" data-screen-label="Agent page">
+
+  <div class="detail__crumb">Agent 工程</div>
+  <h1>我怎么理解 Agent</h1>
+
+  <p class="lede" style="margin-bottom: 2.4rem; max-width: 40rem;">
+    Agent 不是「更聪明的 prompt」,是一套需要被工程化的系统。我的重心在
+    <strong style="font-weight:600;color:var(--ink)">harness 设计</strong>、
+    <strong style="font-weight:600;color:var(--ink)">工程化上下文</strong>、以及
+    <strong style="font-weight:600;color:var(--ink)">用结果评估驱动迭代</strong>——让 agent 能跑、可验证、不失控。
+  </p>
+
+  <!-- Download card -->
+  <a class="handbook" href="assets/agent-handbook.pdf" target="_blank" rel="noopener" download="薛豪楠-从零构建Agent技术手册.pdf">
+    <div class="handbook__body">
+      <div class="handbook__title">《从零构建 Agent》技术手册</div>
+      <div class="handbook__meta">42 页 · PDF · 从 prompt → context → harness,每一层给目录结构 / 模板 / 代码骨架 / 决策清单。</div>
+    </div>
+    <span class="handbook__dl">下载 ↓</span>
+  </a>
+
+  <hr class="rule" />
+
+  <div class="section-h">01 · Agent 是 harness,不是 prompt</div>
+  <p>多数人把 agent 当「更长的 prompt」来调。我把它当一套 <strong style="font-weight:600;color:var(--ink)">harness</strong>:模型之外的约束、工具、状态、上下文如何被编排——这些才决定一个 agent 稳不稳、可不可控。以我的 NGT-AI 为例,真正起作用的不是某一句 prompt,而是「独立产出 → 互不可见 → 交叉评分 → 立场表态 → 裁判综合」这套强制流程(harness)。</p>
+
+  <div class="section-h">02 · 上下文是工程资产</div>
+  <p>Context Engineering:上下文不是随手拼的字符串,而是要<strong style="font-weight:600;color:var(--ink)">版本化、可测试、可复用</strong>的工程资产。我的 amzagent 里,14 个 Prompt 包各自独立、每个带 5 类夹具(标准 / 变体 / 边界 / 对抗),能像代码一样单独测试、单独迭代——上下文被当成工程件来管理,而不是靠手感堆。</p>
+
+  <div class="section-h">03 · 用结果评估驱动迭代</div>
+  <p>我不靠「感觉这版 prompt 更好」来改 agent,而靠 <strong style="font-weight:600;color:var(--ink)">eval</strong>:定义可衡量的产出质量,用结果反过来调设计。policy-observer 我甚至给自己的系统跑过一次投资人级质量自审,揪出「检索不到证据却仍自信研判」的问题,据此定下熔断 / 相关性 / 量化三条修正——这就是结果评估驱动的版本迭代。</p>
+
+  <div class="section-h">04 · 让它可验证、不失控</div>
+  <p>Agent 最危险的不是答错,是<strong style="font-weight:600;color:var(--ink)">没把握时装作有把握</strong>、或成本 / 行为失控。所以我默认给 agent 装护栏:检索相关性闸门、无据熔断、JSON schema 校验、一致性投票、成本熔断——「能跑」固然重要,「知道它何时不可信、并被约束住」更重要。这也是我认为决策类 AI 真正的护城河。</p>
+
+  <div class="section-h">05 · 一份可照着做的手册</div>
+  <p>我把上面这套方法整理成一份《从零构建 Agent》实操手册(42 页):从 prompt → context → harness 逐层展开,每一层都给目录结构、模板、代码骨架和决策清单——目标是让读者也能搭出一个「能跑、可验证、不失控」的 agent。</p>
+
+  <a class="handbook" href="assets/agent-handbook.pdf" target="_blank" rel="noopener" download="薛豪楠-从零构建Agent技术手册.pdf" style="margin-top:1.5rem;">
+    <div class="handbook__body">
+      <div class="handbook__title">下载技术手册</div>
+      <div class="handbook__meta">《从零构建 Agent》· 42 页 · PDF</div>
+    </div>
+    <span class="handbook__dl">下载 ↓</span>
+  </a>
+
+  <nav class="pager" data-screen-label="Pager" style="margin-top: 3.5rem;">
+    <a href="index.html"><span class="label">← 回到</span><span class="name">首页</span></a>
+    <a href="index.html#projects"><span class="label">看 →</span><span class="name">项目实践</span></a>
+  </nav>
+
+</main>
+
+<footer class="foot">
+  <div class="shell foot__inner">
+    <span>© 2026 薛豪楠 · Hao-Nan Xue</span>
+    <span>纯静态 · 无追踪 · 无 Cookie</span>
+  </div>
+</footer>
+
+<script>
+  const nav = document.getElementById('nav');
+  const onScroll = () => nav.classList.toggle('is-scrolled', window.scrollY > 8);
+  document.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+</script>
+
+</body>
+</html>
