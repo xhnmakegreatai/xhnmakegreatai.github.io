@@ -119,9 +119,23 @@
     </div>
   </section>
 
+  <!-- 技术路线 -->
+  <section class="chapter">
+    <div class="chapter__num">05 · 技术路线</div>
+    <h2 class="chapter__title">从方法论到可被直连的智能体</h2>
+    <p>从一个社会学方法出发,按规范工程做成能跑、有测试、还能被标准协议直连的系统。</p>
+    <ul class="nodes">
+      <li><b>方法论</b><span>把名义小组技术(NGT)迁移到多 LLM 协同——异构模型是「多元视角」的物理基础,不是修辞。</span></li>
+      <li><b>设计</b><span>6 阶段编排 + 强制异构厂商模型 + 独立裁判;Provider 抽象,新增模型只实现一个接口。</span></li>
+      <li><b>开发</b><span>Python asyncio 编排器(并行扇出)+ FastAPI 后端 + React 前端;Mock 模式零依赖、克隆即跑。</span></li>
+      <li><b>测试</b><span>覆盖 provider / parser / 状态机 / 编排的单测,克隆后一条命令即可跑通全流程。</span></li>
+      <li><b>互操作 · A2A</b><span>内核已暴露为 A2A(Agent2Agent)智能体:Agent Card(<code>/.well-known/agent.json</code>)+ JSON-RPC 端点(<code>/a2a</code>),别的系统用标准协议就能直连它做决策。</span></li>
+    </ul>
+  </section>
+
   <!-- 现状 -->
   <section class="chapter">
-    <div class="chapter__num">05 · 现状</div>
+    <div class="chapter__num">06 · 现状</div>
     <h2 class="chapter__title">部署状态与可见性</h2>
     <p>开源项目,已发布在 GitHub。</p>
     <p>一个示例报告(「初创公司研发资源分配」决策):<span class="mono" style="color:var(--ink);font-size:0.92rem;">6.09 秒</span>完成全流程,4 个 Discussant 全部 <span class="mono" style="color:var(--accent-deep);font-size:0.92rem;">DEFENDED</span>,均分 <span class="mono tabular" style="color:var(--ink);font-size:0.92rem;">85</span>。</p>

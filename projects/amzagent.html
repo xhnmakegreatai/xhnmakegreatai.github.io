@@ -116,9 +116,24 @@
     </div>
   </section>
 
+  <!-- 技术路线 -->
+  <section class="chapter">
+    <div class="chapter__num">05 · 技术路线</div>
+    <h2 class="chapter__title">从需求到交付,一个人跑通规范流程</h2>
+    <p>不是脚本堆叠,是按规范软件工程做的可交付系统:从客户访谈到部署 + 交接文档,全链路自己走通。</p>
+    <ul class="nodes">
+      <li><b>需求</b><span>与亚马逊运营访谈,把「3–5 天的关键词 + 竞品调研」拆成可自动化的判断流程。</span></li>
+      <li><b>设计</b><span>7 节点 Agent 流水线 + 一份 19 个业务参数的客户决策手册(阈值让客户拍板,而非写死)。</span></li>
+      <li><b>开发</b><span>FastAPI + Celery + Redis + MinIO + Next.js 14;Provider 抽象层(注册表模式),双供应商(OpenAI / 千问)业务代码不感知。</span></li>
+      <li><b>测试</b><span>14 个 Prompt 包各带 5 类夹具(标准 / 变体 / 边界 / 对抗)+ 独立测试运行器;端到端 mock 跑通 7 节点 + 3 报告。</span></li>
+      <li><b>可靠性</b><span>三层兜底(schema 校验 / 一致性投票 / 成本熔断);节点失败从节点头重试、缓存命中跳过。</span></li>
+      <li><b>部署 & 交接</b><span>docker-compose 七服务一键起 + alembic 迁移;交付 HANDOVER / USER_GUIDE / DEVELOPMENT 三份文档。</span></li>
+    </ul>
+  </section>
+
   <!-- 现状 -->
   <section class="chapter">
-    <div class="chapter__num">05 · 现状</div>
+    <div class="chapter__num">06 · 现状</div>
     <h2 class="chapter__title">部署状态与可见性</h2>
     <p>已在跨境电商运营场景中部署使用,持续迭代。涉及客户的业务数据不公开,代码仓库见 GitHub。</p>
     <p>可靠性上做了三层兜底:JSON schema 校验、边界 case 一致性投票、单任务成本熔断;LLM 调用全程记录耗时/成本/是否命中缓存——让每一步产出都可检查、可追溯。</p>

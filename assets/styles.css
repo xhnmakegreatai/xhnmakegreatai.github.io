@@ -986,6 +986,11 @@ a.section__meta:hover { color: var(--accent-deep); }
 .shots-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-top: 0.5rem; }
 @media (max-width: 560px) { .shots-2 { grid-template-columns: 1fr; } }
 
+.about-summary__more {
+  display: flex; gap: 0.8rem 2rem; justify-content: center; flex-wrap: wrap;
+  margin-top: 0.5rem;
+}
+
 /* Footer
    -------------------------------------------------------------------------- */
 .foot {

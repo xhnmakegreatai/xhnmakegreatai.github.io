@@ -92,10 +92,9 @@
   <!-- 演示 -->
   <section class="chapter">
     <div class="chapter__num">04 · 演示</div>
-    <h2 class="chapter__title">真实研究样张 · 与我怎么验它</h2>
-    <p>架构讲完,关键是它产出的东西能不能信。这里放一段真实运行录屏、两张关键产出截图,以及我专门用来拷问它的方法。</p>
+    <h2 class="chapter__title">真实运行 · 与它为什么可信</h2>
+    <p>架构讲完,关键是它产出的东西能不能信。这里放一段真实运行录屏、两张关键产出截图,以及支撑它们的设计思路。</p>
 
-    <!-- 录屏:真实前端发起研判 → 生成四层研判报告 -->
     <figure class="shot shot--video">
       <video src="../assets/po-demo.mp4" controls muted playsinline preload="metadata">
         <div class="shot__ph">▶ 运行录屏 · 前端发起研判 → 生成四层研判报告</div>
@@ -103,25 +102,21 @@
       <figcaption>真实运行录屏:在前端发起一次政策研判 → 系统现生成四层研判报告(中国 / 全球 / 综合 / NGT)。</figcaption>
     </figure>
 
-    <!-- 研判报告样张 -->
-    <figure class="shot">
-      <img src="../assets/po-report.png" alt="policy-observer 研判报告样张" loading="lazy" />
-      <figcaption>研判报告样张(「千帆星座」组网卫星政策):四层视角逐层展开,结论带信源引用、可回溯原文。</figcaption>
-    </figure>
-
-    <div class="subhead">样张 · 棉花目标价格政策研判(节选)</div>
-    <div class="sample">
-      <div class="sample__src">信源:发改价格〔2026〕733号 · 公开政策原文(733 字)</div>
-      <p class="sample__lead">核心研判:政策本质从「保量稳价」切换为「控水提质 + 精准补贴 + 直售通道」——18600 元/吨目标价与 510 万吨固定补贴产量锁定基本盘,通过「非优势区退出 + 地下水超采调减」实施结构性收缩。</p>
-      <ul class="sample__pts">
-        <li><b>二阶效应</b><span>补贴固定化 + 质量导向,加速产业集团化整合;下游为规避目的国合规,转向「优质棉内销 + 进口棉出口」双轨,推高内贸优质棉溢价。</span></li>
-        <li><b>风险点</b><span>固定补贴 + 目标价机制,易被目的国援引 WTO《SCM 协定》认定为「可诉补贴」——出口企业需提前准备补贴性质界定的法律意见。</span></li>
-      </ul>
+    <div class="shots-2">
+      <figure class="shot">
+        <img src="../assets/po-report.png" alt="集成电路税收优惠研判报告(信源依据)" loading="lazy" />
+        <figcaption>① 完整研判(「集成电路企业税收优惠」):顶部列「信源依据」而非一个笼统评分;相关性 1/1,结论带信源引用、可回溯原文。</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="../assets/po-fallback.png" alt="检索熔断:拒绝无据研判" loading="lazy" />
+        <figcaption>② 检索熔断:查不到相关信源时,系统明说「无法据此研判」、拒绝在无证据下臆测——知道自己何时不可信。</figcaption>
+      </figure>
     </div>
 
-    <div class="subhead">我怎么验它 · 接地度盲评</div>
-    <p>我没有止步于「能产出报告」。我把同一份政策喂给不同模型做盲评,专门查<strong style="color:var(--ink);font-weight:600">接地度</strong>——它说的每个数字(目标价 18600、固定产量 510 万吨…)能不能在信源原文里逐条找到?有没有冒出原文没有的「具体数据」?凡是查不到、又说得很具体的,就是疑似编造。</p>
-    <p class="demo__caption">「能不能在原文里找到」这一关,才是决策类 AI 可不可信的分水岭。对系统更深一层的质量自审,见下方「现状」。</p>
+    <div class="subhead">设计思路 · 以「集成电路税收优惠」为例</div>
+    <p>这个查询最能说明系统的「接地度」设计。政策库里其实混着一堆「进口税收优惠」「跨境电商退税」政策——它们都蹭到了「税收 / 优惠」这种<strong style="color:var(--ink);font-weight:600">通用政策工具词</strong>,一不小心就被当成相关信源凑数,让研判看起来「有据」实则跑题。</p>
+    <p>我的做法:相关性闸门要求信源必须命中查询的<strong style="color:var(--ink);font-weight:600">主体词</strong>(集成电路),只蹭通用词的一律判为不相关、丢弃。于是这一题最终只留下 1 条真正相关的政策——<strong style="color:var(--ink);font-weight:600">宁缺毋滥</strong>。研判只建立在真正相关的信源上;一条相关的都没有时,就走上面的熔断。</p>
+    <p class="demo__caption">「信源与问题是否真的相关」这一关,才是决策类 AI 可不可信的分水岭。对系统更深一层的质量自审,见下方「现状」。</p>
   </section>
 
   <!-- 取舍 -->
@@ -148,9 +143,24 @@
     </div>
   </section>
 
+  <!-- 技术路线 -->
+  <section class="chapter">
+    <div class="chapter__num">06 · 技术路线</div>
+    <h2 class="chapter__title">从需求到部署,按规范走一遍</h2>
+    <p>这不是一个 demo,是按规范软件工程从需求做到部署的系统:分层解耦、有测试、可迁移、可观测。</p>
+    <ul class="nodes">
+      <li><b>需求</b><span>政策敏感行业的真实痛点:要的不是更多信息,是更可靠的对比与综合。</span></li>
+      <li><b>设计</b><span>双引擎 + 综合层 + NGT 插件;uv workspace 五包解耦(shared / china / global / synthesizer / ngt_engine),职责清晰。</span></li>
+      <li><b>开发</b><span>Python 3.12 · FastAPI · LangGraph 状态机 · SQLAlchemy 2.0(async);多 LLM 由 config 驱动的 role-router 注入。</span></li>
+      <li><b>测试</b><span>115 个测试按 Sprint 分层(基础设施 / observer / synthesizer / NGT / 飞书 / 持久化 / 集成),端到端可无外部依赖跑通。</span></li>
+      <li><b>部署</b><span>Docker + docker-compose;PostgreSQL(生产)/ SQLite(开发)双档;缺 API key 自动降级 MockLLM,本地零凭证也能起。</span></li>
+      <li><b>可观测</b><span>所有中间结果分字段持久化到 PostgreSQL JSONB,研判过程可追溯、可复盘。</span></li>
+    </ul>
+  </section>
+
   <!-- 现状 -->
   <section class="chapter">
-    <div class="chapter__num">06 · 现状</div>
+    <div class="chapter__num">07 · 现状</div>
     <h2 class="chapter__title">部署状态与可见性</h2>
     <p>设计与原型完成(5 包架构 + 115 个测试),在与目标行业场景持续磨合中。具体客户与部署细节不公开,代码仓库见 GitHub。</p>
     <p>比起「看起来能用」,我更在意它「什么时候不该被信任」——我对它做过一次投资人级的质量自审,主动揪出「检索不到相关证据却仍自信研判」的问题,并定下三条修正方向:检索失败即熔断、可信度评分纳入信源相关性、强制量化与证伪条件。对决策类 AI,这种「知道自己何时不可信」的能力,才是真正的护城河。</p>
