@@ -56,10 +56,15 @@
 
   <!-- Tech stack -->
   <div class="section-h">04 · 技术栈</div>
+  <p>我的重心不在"调 prompt",而在 <strong>Agent 的工程化</strong>:设计好的 harness(约束、工具、上下文的编排),把上下文当工程资产来管理,并<strong>用结果评估驱动版本迭代</strong>——让 agent 能跑、可验证、不失控。</p>
   <dl class="skills">
-    <div><dt>语言</dt><dd>Python</dd></div>
-    <div><dt>大模型</dt><dd>GPT · Gemini · DeepSeek · Qwen</dd></div>
-    <div><dt>方法</dt><dd>多 Agent 编排 · Agent 工作流 · Prompt 工程 · Embedding / 语义相似度</dd></div>
+    <div><dt>Agent 工程方法</dt><dd>Harness 设计 · 工程化上下文(Context Engineering)· Eval 驱动迭代(按结果评估调 agent)· 版本化 Prompt 包 + 夹具测试</dd></div>
+    <div><dt>Agent 编排</dt><dd>LangGraph 状态机 · 多 Agent 协同(NGT)· asyncio 并行扇出 · Provider 抽象层 · A2A(Agent2Agent)协议</dd></div>
+    <div><dt>可信度工程</dt><dd>检索相关性闸门 · 无据熔断降级 · 信源可追溯 · 一致性投票 / JSON schema 校验 · 成本熔断</dd></div>
+    <div><dt>大模型</dt><dd>GPT · Gemini · DeepSeek · Qwen(强制异构)· OpenAI 兼容接口 · Embedding / 语义相似度</dd></div>
+    <div><dt>后端 & 数据</dt><dd>FastAPI · Celery + Redis · SQLAlchemy 2.0(async)· PostgreSQL / SQLite · Alembic 迁移 · MinIO</dd></div>
+    <div><dt>前端</dt><dd>Next.js 14 · React + Vite · Tailwind CSS</dd></div>
+    <div><dt>语言 & 部署</dt><dd>Python · TypeScript / JavaScript · SQL · Docker / docker-compose · Git</dd></div>
   </dl>
 
   <!-- Philosophy -->
