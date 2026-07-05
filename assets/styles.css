@@ -1031,8 +1031,8 @@ a.section__meta:hover { color: var(--accent-deep); }
 .handbook__dl svg { transition: transform 180ms ease; }
 @media (max-width: 520px) {
   .handbook { flex-wrap: wrap; }
-  .handbook__body { flex-basis: calc(100% - 58px); }
-  .handbook__dl { margin-left: 58px; }
+  .handbook__body { flex-basis: 100%; }
+  .handbook__dl { margin-left: 0; margin-top: 0.9rem; }
 }
 
 /* Agent 页:"→ 我的产品里" 落地说明块

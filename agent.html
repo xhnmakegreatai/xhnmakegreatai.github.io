@@ -41,18 +41,6 @@
   <p style="max-width: 40rem;">当下 agent 的演进大致是这么一条线:<b>prompt(一句话)→ context(一个窗口)→ harness(跑一次)→ loop(让它自己一圈圈跑)</b>。现在 harness 这一步研究得最深,也有从业者提出了「loop 工程」。下面讲讲为什么 harness 重要、为什么 loop 也会成为新范式。</p>
   <p style="max-width: 40rem;">有一句话我一直记着:让 AI 做个原型出来玩挺好;但把没验证过的东西直接推上生产,是找死。所以很多 agent 过不了生产关。写代码本身现在真不是瓶颈了,卡人的是后面——你怎么确认它没写错、怎么接进现有系统、怎么保证它半夜自己跑的时候不给你捅娄子。我越来越觉得,代码是可以随时丢了重写的,值钱的是那份让 AI 不用瞎猜的规范。下面几件事,是我觉得很重要的。</p>
 
-  <!-- Download card -->
-  <a class="handbook" href="assets/agent-handbook.pdf" target="_blank" rel="noopener" download="薛豪楠-从零构建Agent技术手册.pdf">
-    <span class="handbook__icon" aria-hidden="true">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3v4a1 1 0 0 0 1 1h4"/><path d="M6.5 3h7L19 8.5V19a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 5 19V4.5A1.5 1.5 0 0 1 6.5 3z"/><path d="M9 13h6M9 16.5h4"/></svg>
-    </span>
-    <div class="handbook__body">
-      <div class="handbook__title">《从零构建 Agent》技术手册</div>
-      <div class="handbook__meta">42 页 · PDF · 从 prompt → context → harness,每一层给目录结构 / 模板 / 代码骨架 / 决策清单。</div>
-    </div>
-    <span class="handbook__dl">下载<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11"/><path d="M7.5 10.5 12 15l4.5-4.5"/><path d="M5 19.5h14"/></svg></span>
-  </a>
-
   <hr class="rule" />
 
   <div class="section-h">01 · 先把规范写扎实,而不是先敲代码</div>
@@ -89,15 +77,19 @@
 
   <hr class="rule" />
 
+  <div class="section-h">工程之外:定义「好」,是业务的活</div>
+  <p>上面这些(harness、护栏、eval、loop)都是工程,但它们全都要先回答一个问题才成立:<b>这个 agent 到底要达成什么、什么才算「好」?</b> 而这是个业务问题,不是工程问题。一个跑得再稳、eval 再漂亮的 agent,如果解决的是错的问题、或把「好」的标准定歪了,就是零价值——参考答案得由懂业务的人来定,而不是另一个 LLM 拍脑袋生成。</p>
+  <p>所以我不把自己只当「调 harness 的工程师」。我通常先花力气搞清楚客户的真实痛点、把「好」翻译成可衡量的标准,再回头设计 harness 和 eval。<b>定义「好」是业务能力,eval 和护栏只是把这个定义忠实执行下去的工程手段。</b>两头都得占——这也是我一直想站的位置:技术与业务之间那座桥。</p>
+  <p class="agent-app"><b>→ 我的产品里:</b>amzagent 的四标签(蓝海 / 红海 / gap / 中性)不是技术指标,是把「运营接下来该做什么决定」翻译成的业务语言;19 个参数的阈值交给客户拍板,因为「好」的标准在客户那儿。policy-observer 一开始就抓住客户要的<b>不是「更多信息」,而是「更可靠的对比与综合」</b>——先定准「好」,工程才知道往哪使劲。</p>
+
+  <hr class="rule" />
+
   <div class="section-h">为什么我盯着 harness 和 loop</div>
   <p>因为这才是「过得了生产关」和「vibe in production 找死」的分界线。写代码 AI 已经很快了,真正卡人的是后面那 80%:怎么验证、怎么接进系统、怎么保证它半夜自己跑时不出事。这些活的名字,就叫 harness 和 loop。</p>
 
   <p class="lede" style="margin: 1.8rem 0 0.5rem; max-width: 40rem;">稀缺的不是生成,是判断。同一个 loop,两个人搭出相反的结局——它忠实放大你带进去的东西。所以我想做的,是像一个打算继续当工程师的人去造循环,而不是一个只负责按启动键的人。</p>
 
   <a class="handbook" href="assets/agent-handbook.pdf" target="_blank" rel="noopener" download="薛豪楠-从零构建Agent技术手册.pdf" style="margin-top:2rem;">
-    <span class="handbook__icon" aria-hidden="true">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3v4a1 1 0 0 0 1 1h4"/><path d="M6.5 3h7L19 8.5V19a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 5 19V4.5A1.5 1.5 0 0 1 6.5 3z"/><path d="M9 13h6M9 16.5h4"/></svg>
-    </span>
     <div class="handbook__body">
       <div class="handbook__title">下载《从零构建 Agent》技术手册</div>
       <div class="handbook__meta">42 页 · PDF · 上面这套方法的完整实操版(spec / MCP / skills / 护栏 / loop / 评估 / 记忆)</div>
