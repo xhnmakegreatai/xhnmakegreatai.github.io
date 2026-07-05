@@ -1045,7 +1045,7 @@ a.section__meta:hover { color: var(--accent-deep); }
   transition: background 180ms ease;
 }
 .dl-btn:hover { background: var(--accent-deep); }
-.dl-btn svg { width: 16px; height: 16px; }
+.dl-btn svg { width: 12px; height: 12px; opacity: 0.85; }
 
 /* Agent 页:"→ 我的产品里" 落地说明块
    -------------------------------------------------------------------------- */
