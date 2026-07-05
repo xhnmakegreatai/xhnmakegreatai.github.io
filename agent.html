@@ -35,45 +35,74 @@
   <div class="detail__crumb">Agent 工程</div>
   <h1>我怎么理解 Agent</h1>
 
-  <p class="lede" style="margin-bottom: 2.4rem; max-width: 40rem;">
-    Agent 不是「更聪明的 prompt」,是一套需要被工程化的系统。我的重心在
-    <strong style="font-weight:600;color:var(--ink)">harness 设计</strong>、
-    <strong style="font-weight:600;color:var(--ink)">工程化上下文</strong>、以及
-    <strong style="font-weight:600;color:var(--ink)">用结果评估驱动迭代</strong>——让 agent 能跑、可验证、不失控。
+  <p class="lede" style="margin-bottom: 1.4rem; max-width: 40rem;">
+    <b>Agent = Model + Harness。</b> 模型只是智能体的一个输入;真正完成一件事、可以被迭代的,是围绕模型外部的那套框架——harness:提示、工具、上下文策略、钩子、沙盒、子智能体、可观测性。
   </p>
+  <p style="max-width: 40rem;">当下 agent 的演进大致是这么一条线:<b>prompt(一句话)→ context(一个窗口)→ harness(跑一次)→ loop(让它自己一圈圈跑)</b>。现在 harness 这一步研究得最深,也有从业者提出了「loop 工程」。下面讲讲为什么 harness 重要、为什么 loop 也会成为新范式。</p>
+  <p style="max-width: 40rem;">有一句话我一直记着:让 AI 做个原型出来玩挺好;但把没验证过的东西直接推上生产,是找死。所以很多 agent 过不了生产关。写代码本身现在真不是瓶颈了,卡人的是后面——你怎么确认它没写错、怎么接进现有系统、怎么保证它半夜自己跑的时候不给你捅娄子。我越来越觉得,代码是可以随时丢了重写的,值钱的是那份让 AI 不用瞎猜的规范。下面几件事,是我觉得很重要的。</p>
 
   <!-- Download card -->
   <a class="handbook" href="assets/agent-handbook.pdf" target="_blank" rel="noopener" download="薛豪楠-从零构建Agent技术手册.pdf">
+    <span class="handbook__icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3v4a1 1 0 0 0 1 1h4"/><path d="M6.5 3h7L19 8.5V19a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 5 19V4.5A1.5 1.5 0 0 1 6.5 3z"/><path d="M9 13h6M9 16.5h4"/></svg>
+    </span>
     <div class="handbook__body">
       <div class="handbook__title">《从零构建 Agent》技术手册</div>
       <div class="handbook__meta">42 页 · PDF · 从 prompt → context → harness,每一层给目录结构 / 模板 / 代码骨架 / 决策清单。</div>
     </div>
-    <span class="handbook__dl">下载 ↓</span>
+    <span class="handbook__dl">下载<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11"/><path d="M7.5 10.5 12 15l4.5-4.5"/><path d="M5 19.5h14"/></svg></span>
   </a>
 
   <hr class="rule" />
 
-  <div class="section-h">01 · Agent 是 harness,不是 prompt</div>
-  <p>多数人把 agent 当「更长的 prompt」来调。我把它当一套 <strong style="font-weight:600;color:var(--ink)">harness</strong>:模型之外的约束、工具、状态、上下文如何被编排——这些才决定一个 agent 稳不稳、可不可控。以我的 NGT-AI 为例,真正起作用的不是某一句 prompt,而是「独立产出 → 互不可见 → 交叉评分 → 立场表态 → 裁判综合」这套强制流程(harness)。</p>
+  <div class="section-h">01 · 先把规范写扎实,而不是先敲代码</div>
+  <p>规范是「架构北极星」,防止 AI 看着过时快照越跑越偏。一份好规范要拆到:为什么做、技术设计、接口合约、以及最值钱的边缘情况。</p>
+  <p class="agent-app"><b>→ 我的产品里:</b>amzagent 我先写了近两千行的项目蓝图(<code>claude.md</code>)和评审决策记录(<code>advice.md</code>)才动代码;更关键的是把 19 个业务参数抽成一份「客户决策手册」——阈值让客户拍板,而不是写死在代码里。规范先行,代码才是可重生成的那部分。</p>
 
-  <div class="section-h">02 · 上下文是工程资产</div>
-  <p>Context Engineering:上下文不是随手拼的字符串,而是要<strong style="font-weight:600;color:var(--ink)">版本化、可测试、可复用</strong>的工程资产。我的 amzagent 里,14 个 Prompt 包各自独立、每个带 5 类夹具(标准 / 变体 / 边界 / 对抗),能像代码一样单独测试、单独迭代——上下文被当成工程件来管理,而不是靠手感堆。</p>
+  <div class="section-h">02 · 工具和 agent 之间走标准接口,别写一次性胶水</div>
+  <p>N 个模型 × M 个工具,各写集成就是组合爆炸;标准接口把它拍平成加法。</p>
+  <p class="agent-app"><b>→ 我的产品里:</b>amzagent 用注册表模式的 Provider 抽象层,OpenAI / 千问双供应商随意切、业务代码完全不感知;NGT-AI 我进一步把内核暴露成一个可被 <b>A2A 协议</b>直连的 agent——别的系统用标准协议就能调它做决策,而不必了解内部 6 阶段。</p>
 
-  <div class="section-h">03 · 用结果评估驱动迭代</div>
-  <p>我不靠「感觉这版 prompt 更好」来改 agent,而靠 <strong style="font-weight:600;color:var(--ink)">eval</strong>:定义可衡量的产出质量,用结果反过来调设计。policy-observer 我甚至给自己的系统跑过一次投资人级质量自审,揪出「检索不到证据却仍自信研判」的问题,据此定下熔断 / 相关性 / 量化三条修正——这就是结果评估驱动的版本迭代。</p>
+  <div class="section-h">03 · 把反复出现的判断沉淀成可复用、可独立测试的资产</div>
+  <p>模型缺「一步步怎么干」的程序性记忆,得把它固化下来;而且要能像代码一样单独测。</p>
+  <p class="agent-app"><b>→ 我的产品里:</b>amzagent 把每一类判断做成 14 个独立的 Prompt 包,每个带 5 类测试夹具(标准 / 变体 / 边界 / 对抗)+ 独立测试运行器——上下文被当成工程件来管、能单独迭代,而不是靠手感堆在一个大 prompt 里。</p>
 
-  <div class="section-h">04 · 让它可验证、不失控</div>
-  <p>Agent 最危险的不是答错,是<strong style="font-weight:600;color:var(--ink)">没把握时装作有把握</strong>、或成本 / 行为失控。所以我默认给 agent 装护栏:检索相关性闸门、无据熔断、JSON schema 校验、一致性投票、成本熔断——「能跑」固然重要,「知道它何时不可信、并被约束住」更重要。这也是我认为决策类 AI 真正的护城河。</p>
+  <div class="section-h">04 · 单个 agent 扛得住就别拆成一堆</div>
+  <p>多 agent 是运维噩梦,撞上真正的天花板(关注点互相干扰、上下文塞爆、单点全崩)才值得拆。</p>
+  <p class="agent-app"><b>→ 我的产品里:</b>policy-observer 我特意把最重的 NGT 深度研判做成<b>插件</b>、只在重大决策点才启用,而不是每次研判都跑 6 阶段;三个观察节点也解耦、可独立调用。默认轻,必要时才上重的。</p>
 
-  <div class="section-h">05 · 一份可照着做的手册</div>
-  <p>我把上面这套方法整理成一份《从零构建 Agent》实操手册(42 页):从 prompt → context → harness 逐层展开,每一层都给目录结构、模板、代码骨架和决策清单——目标是让读者也能搭出一个「能跑、可验证、不失控」的 agent。</p>
+  <div class="section-h">05 · 给它装外部护栏 —— 这就是 harness 为什么重要</div>
+  <p>agent 会用它能找到的一切去优化目标,不会停下来问「我该不该」。把约束写进 prompt 太脆(会溢出、能被注入),得是外部的、防篡改的。</p>
+  <p class="agent-app"><b>→ 我的产品里:</b>policy-observer 我装了两道输出层护栏——<b>相关性闸门</b>(信源必须命中主体词,只蹭通用词的丢弃)和<b>检索熔断</b>(查不到相关信源就明说「无法据此研判」,拒绝在无证据下臆测);amzagent 则有 JSON schema 校验、边界一致性投票和<b>单任务成本熔断</b>。模型是大脑,这些边界才是让它不捅娄子的手脚——而它们全是 harness,是我真正在写、也真正在迭代的部分。</p>
 
-  <a class="handbook" href="assets/agent-handbook.pdf" target="_blank" rel="noopener" download="薛豪楠-从零构建Agent技术手册.pdf" style="margin-top:1.5rem;">
+  <div class="section-h">06 · 让它自己一圈圈跑,但先装好「能说不」的东西 —— 这是 loop 为什么会成为新范式</div>
+  <p>harness 武装的是「漂亮跑完一次」,loop 把「等你敲下一拍」也自动化掉,你从循环里的人肉时钟挪到循环外。但铁律是:loop 跑得越欢,那个能对它说「不」的评估层越是它的下限。</p>
+  <p class="agent-app"><b>→ 我的产品里:</b>policy-observer 有一条定时循环(APScheduler 定时抓取政策源 + 每日推送),把「我手动查一次」变成「它自己一圈圈在转」;而给它兜底的,正是下面这条。</p>
+
+  <div class="section-h">07 · 最难、也最值钱的,是那个「能说不」的东西</div>
+  <p>测试问「返回值对不对」(抓确定性回归),评估问「有没有比基线更差」(抓行为漂移),两者都要。而且别让写代码 / 做研判的 agent 给自己打分——它太手软;要换一个独立的、默认怀疑的、最好连底座都换掉的评判器。</p>
+  <p class="agent-app"><b>→ 我的产品里:</b>NGT-AI 的机制本身就是 maker-checker——讨论员不能给自己评分、由一个独立的 Referee 综合;policy-observer 我更进一步,跑了一次<b>投资人级质量自审</b>(一个外部挑剔的角色黑盒使用系统),专门揪「检索不到证据却仍自信研判」,再据此定下熔断 / 相关性 / 量化三条修正。用结果评估反过来改设计,而不是靠感觉调 prompt。</p>
+
+  <div class="section-h">08 · 记忆要分清「现在」和「长期」</div>
+  <p>Session 是工作台,管当前任务;Memory 是文件柜,管跨会话的洞见。而且上下文不是越长越好——窗口越长模型对关键信息的注意力反而越差(context rot),压缩是为保质量,不是省钱。</p>
+  <p class="agent-app agent-app--muted"><b>坦白说:</b>这一层我目前的产品做得还浅——更多是把中间结果分字段持久化下来保证可追溯,还没做成一套完整的记忆系统。这是我接下来想补的。</p>
+
+  <hr class="rule" />
+
+  <div class="section-h">为什么我盯着 harness 和 loop</div>
+  <p>因为这才是「过得了生产关」和「vibe in production 找死」的分界线。写代码 AI 已经很快了,真正卡人的是后面那 80%:怎么验证、怎么接进系统、怎么保证它半夜自己跑时不出事。这些活的名字,就叫 harness 和 loop。</p>
+
+  <p class="lede" style="margin: 1.8rem 0 0.5rem; max-width: 40rem;">稀缺的不是生成,是判断。同一个 loop,两个人搭出相反的结局——它忠实放大你带进去的东西。所以我想做的,是像一个打算继续当工程师的人去造循环,而不是一个只负责按启动键的人。</p>
+
+  <a class="handbook" href="assets/agent-handbook.pdf" target="_blank" rel="noopener" download="薛豪楠-从零构建Agent技术手册.pdf" style="margin-top:2rem;">
+    <span class="handbook__icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3v4a1 1 0 0 0 1 1h4"/><path d="M6.5 3h7L19 8.5V19a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 5 19V4.5A1.5 1.5 0 0 1 6.5 3z"/><path d="M9 13h6M9 16.5h4"/></svg>
+    </span>
     <div class="handbook__body">
-      <div class="handbook__title">下载技术手册</div>
-      <div class="handbook__meta">《从零构建 Agent》· 42 页 · PDF</div>
+      <div class="handbook__title">下载《从零构建 Agent》技术手册</div>
+      <div class="handbook__meta">42 页 · PDF · 上面这套方法的完整实操版(spec / MCP / skills / 护栏 / loop / 评估 / 记忆)</div>
     </div>
-    <span class="handbook__dl">下载 ↓</span>
+    <span class="handbook__dl">下载<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11"/><path d="M7.5 10.5 12 15l4.5-4.5"/><path d="M5 19.5h14"/></svg></span>
   </a>
 
   <nav class="pager" data-screen-label="Pager" style="margin-top: 3.5rem;">

@@ -994,28 +994,63 @@ a.section__meta:hover { color: var(--accent-deep); }
 /* 手册下载卡(Agent 页)
    -------------------------------------------------------------------------- */
 .handbook {
-  display: flex; align-items: center; justify-content: space-between; gap: 1.5rem;
-  background: var(--bg-card); border-radius: var(--radius);
-  padding: 1.5rem 1.8rem; margin: 2rem 0;
-  transition: box-shadow 250ms ease;
+  display: flex; align-items: center; gap: 1.2rem;
+  background: var(--bg-card); border: 1px solid transparent; border-radius: var(--radius);
+  padding: 1.35rem 1.5rem; margin: 2rem 0;
+  transition: border-color 200ms ease, box-shadow 250ms ease, transform 250ms ease;
 }
-.handbook:hover { box-shadow: 0 16px 36px -26px rgba(0,0,0,0.2); }
+.handbook:hover {
+  border-color: color-mix(in srgb, var(--accent) 40%, transparent);
+  box-shadow: 0 18px 40px -28px rgba(0,0,0,0.28);
+}
+.handbook__icon {
+  flex-shrink: 0; width: 46px; height: 46px; border-radius: 13px;
+  background: var(--accent-soft); color: var(--accent-deep);
+  display: grid; place-items: center;
+}
+.handbook__icon svg { width: 23px; height: 23px; }
+.handbook__body { flex: 1 1 auto; min-width: 0; }
 .handbook__title {
-  font-family: var(--serif); font-size: 1.2rem; font-weight: 600;
+  font-family: var(--serif); font-size: 1.18rem; font-weight: 600;
   color: var(--ink); letter-spacing: -0.02em;
 }
 .handbook__meta {
-  margin-top: 0.4rem; font-family: var(--sans-cn); font-size: 0.88rem;
+  margin-top: 0.4rem; font-family: var(--sans-cn); font-size: 0.86rem;
   color: var(--ink-mute); letter-spacing: -0.01em; line-height: 1.5;
 }
 .handbook__dl {
-  flex-shrink: 0; background: var(--accent); color: #fff;
+  flex-shrink: 0; display: inline-flex; align-items: center; gap: 0.4rem;
+  background: var(--accent); color: #fff;
   font-size: 0.95rem; font-weight: 400; letter-spacing: -0.01em;
-  padding: 0.6rem 1.3rem; border-radius: 980px; white-space: nowrap;
+  padding: 0.6rem 1.25rem; border-radius: 980px; white-space: nowrap;
+  transition: background 180ms ease;
 }
+.handbook__dl svg { width: 15px; height: 15px; }
 .handbook:hover .handbook__dl { background: var(--accent-deep); }
-@media (max-width: 480px) {
-  .handbook { flex-direction: column; align-items: flex-start; gap: 1rem; }
+.handbook:hover .handbook__dl svg { transform: translateY(1px); }
+.handbook__dl svg { transition: transform 180ms ease; }
+@media (max-width: 520px) {
+  .handbook { flex-wrap: wrap; }
+  .handbook__body { flex-basis: calc(100% - 58px); }
+  .handbook__dl { margin-left: 58px; }
+}
+
+/* Agent 页:"→ 我的产品里" 落地说明块
+   -------------------------------------------------------------------------- */
+.about-page p.agent-app {
+  border-left: 2px solid var(--accent);
+  padding-left: 1rem; margin-top: 0.9rem;
+  color: var(--ink); font-size: 1.04rem; line-height: 1.6;
+}
+.about-page p.agent-app b { color: var(--accent-deep); font-weight: 600; }
+.about-page p.agent-app--muted { border-left-color: var(--rule); color: var(--ink-mute); }
+.about-page p.agent-app--muted b { color: var(--ink-mute); }
+
+/* 行内代码 */
+code {
+  font-family: var(--mono); font-size: 0.86em;
+  background: var(--bg-card); border: 1px solid var(--rule-soft);
+  padding: 0.08em 0.38em; border-radius: 5px; color: var(--ink);
 }
 
 /* Footer
