@@ -1035,6 +1035,18 @@ a.section__meta:hover { color: var(--accent-deep); }
   .handbook__dl { margin-left: 0; margin-top: 0.9rem; }
 }
 
+/* 普通大小的下载按钮 */
+.dl-btn {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  margin-top: 1.6rem;
+  background: var(--accent); color: #fff;
+  font-family: var(--sans); font-size: 0.95rem; letter-spacing: -0.01em;
+  padding: 0.6rem 1.2rem; border-radius: 980px;
+  transition: background 180ms ease;
+}
+.dl-btn:hover { background: var(--accent-deep); }
+.dl-btn svg { width: 16px; height: 16px; }
+
 /* Agent 页:"→ 我的产品里" 落地说明块
    -------------------------------------------------------------------------- */
 .about-page p.agent-app {
