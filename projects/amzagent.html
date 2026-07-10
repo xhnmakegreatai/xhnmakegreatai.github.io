@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>amzagent · 亚马逊关键词分析 Agent 流水线 — 薛豪楠</title>
-<meta name="description" content="amzagent — 把亚马逊运营 3–5 天的关键词分析与竞品研究工作,压缩为 30 分钟的自动化 Agent 流水线。" />
+<title>amzagent · 亚马逊关键词分析 Agent 系统(v1 交付 → v2 多智能体重构)— 薛豪楠</title>
+<meta name="description" content="amzagent — 把亚马逊运营 3–5 天的关键词分析压缩为约 30 分钟的 Agent 系统。v1 已为真实运营交付部署;v2 吸收使用反馈 + 最新 Agent 工程范式重构为多智能体 + 多租户系统。" />
 <!-- 分享卡片:部署后把 og:image / twitter:image 换成绝对地址 https://你的域名/assets/og-cover.jpg -->
 <meta property="og:type" content="article" />
 <meta property="og:locale" content="zh_CN" />
-<meta property="og:title" content="amzagent · 亚马逊关键词分析 Agent 流水线" />
-<meta property="og:description" content="把亚马逊运营 3–5 天的关键词分析与竞品研究工作,压缩为 30 分钟的自动化 Agent 流水线。" />
+<meta property="og:title" content="amzagent · 亚马逊关键词分析 Agent 系统(v1 交付 → v2 多智能体重构)" />
+<meta property="og:description" content="v1 已为真实运营交付部署;v2 吸收使用反馈 + 最新 Agent 工程范式,重构为多智能体 + 多租户 + 生产就绪系统。" />
 <meta property="og:image" content="https://xhnmakegreatai.github.io/assets/og-cover.jpg" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:image" content="https://xhnmakegreatai.github.io/assets/og-cover.jpg" />
@@ -34,14 +34,14 @@
 
   <a class="detail__back" href="../index.html#projects">返回项目列表</a>
 
-  <div class="detail__crumb"><span class="accent">PROJECT 01</span> · 跨境电商 · AGENT 工作流 · 已部署</div>
-  <h1 class="detail__title">amzagent <em>· 亚马逊关键词分析 Agent 流水线</em></h1>
-  <p class="detail__subtitle">客户类型:亚马逊跨境电商运营 · 状态:已部署使用,持续迭代</p>
+  <div class="detail__crumb"><span class="accent">PROJECT 01</span> · 跨境电商 · AGENT 系统 · v1 已交付部署 / v2 迭代中</div>
+  <h1 class="detail__title">amzagent <em>· 亚马逊关键词分析 Agent 系统</em></h1>
+  <p class="detail__subtitle">v1:为真实亚马逊运营交付、已部署使用 · v2:吸收反馈 + 最新 Agent 范式重构的多智能体版本(优化中)</p>
 
   <p class="detail__lede">
-    把亚马逊运营 3–5 天的关键词分析与竞品研究工作,<br />
-    压缩为单次约 30 分钟的自动化 Agent 流水线,<br />
-    产出三份可直接落地的运营报告。
+    把亚马逊运营 3–5 天的关键词分析与竞品研究,<br />
+    压缩为单次约 30 分钟、产出三份可直接落地报告的 Agent 系统。<br />
+    先交付了能用的 v1,再把它重构成一个站得住脚的多智能体系统。
   </p>
 
   <!-- 问题 -->
@@ -53,11 +53,11 @@
     <p>我接触的几位运营都表达过同一个痛点:「我知道哪些动作是必须做的,但每次做完都觉得自己只是个执行工具——我希望把这部分外包给系统。」</p>
   </section>
 
-  <!-- 设计 -->
+  <!-- v1 交付 -->
   <section class="chapter">
-    <div class="chapter__num">02 · 设计</div>
-    <h2 class="chapter__title">产品逻辑与技术架构</h2>
-    <p>把运营的判断流程拆解为 7 个有顺序的步骤,每一步用 AI Agent 替代重复判断,最终产出三份结构化报告。</p>
+    <div class="chapter__num">02 · v1 · 交付版</div>
+    <h2 class="chapter__title">先做一个真的能用、真的交付出去的系统</h2>
+    <p>把运营的判断流程拆解为 7 个有顺序的步骤,每一步用 AI 替代重复判断,最终产出三份结构化报告。这一版已在真实跨境电商运营场景中部署使用。</p>
 
     <div class="subhead">技术架构 · 7 步骤流水线</div>
     <ol class="steps">
@@ -69,12 +69,8 @@
       <li><b>词根整理</b><span>提取关键词背后的语义簇,辅助 Listing 撰写</span></li>
       <li><b>报告生成</b><span>产出三份报告:关键词矩阵 / 竞品分析 / 运营建议</span></li>
     </ol>
-  </section>
 
-  <!-- 演示 -->
-  <section class="chapter">
-    <div class="chapter__num">03 · 演示</div>
-    <h2 class="chapter__title">产出长什么样</h2>
+    <div class="subhead">真实产出</div>
     <div class="shots-2">
       <figure class="shot">
         <img src="../assets/amz-create.png" alt="新建任务:上传 4 类文件" loading="lazy" />
@@ -82,7 +78,7 @@
       </figure>
       <figure class="shot">
         <img src="../assets/amz-done.png" alt="7 节点跑完,产出 3 份报告" loading="lazy" />
-        <figcaption>② 7 节点全部跑完(成本 $0.06),产出关键词 Excel / 定位 PDF / 差距 PDF 三份报告。</figcaption>
+        <figcaption>② 7 节点全部跑完(单次成本约 $0.06–0.18),产出关键词 Excel / 定位 PDF / 差距 PDF 三份报告。</figcaption>
       </figure>
       <figure class="shot">
         <img src="../assets/amz-positioning.png" alt="产品定位报告" loading="lazy" />
@@ -93,51 +89,99 @@
         <figcaption>④ 文案差距报告:竞品强、我们弱的点,直接指导 Listing 改写。</figcaption>
       </figure>
     </div>
-    <p class="demo__caption">真实运行截图(折叠床垫品类)。四标签「蓝海 / 红海 / gap / 中性」直接对应决策动作,而非一个让人犹豫的分数。</p>
+    <p class="demo__caption">v1 真实运行截图(折叠床垫品类)。四标签「蓝海 / 红海 / gap / 中性」直接对应决策动作,而非一个让人犹豫的分数。</p>
   </section>
 
-  <!-- 取舍 -->
+  <!-- 为什么做 v2 -->
   <section class="chapter">
-    <div class="chapter__num">04 · 取舍</div>
+    <div class="chapter__num">03 · 为什么做 v2</div>
+    <h2 class="chapter__title">v1 用起来之后,暴露的三类不足</h2>
+    <p>v1 交付给运营真正用起来之后,加上这一年 Agent 工程范式(多智能体协作、MCP、评估审计)快速成熟,几个方向上的不足浮现出来——它们不是「不能跑」,而是「离一个能给团队长期用的产品还差一层」:</p>
+    <ul class="nodes">
+      <li><b>它其实不是「多智能体」</b><span>v1 的 7 个「Agent」本质是一条固定顺序的工作流,节点间没有协商、判断、互查。真正的 Agent 系统应该能自己判断「这批数据该不该跑」「跑出来的报告合不合格」。</span></li>
+      <li><b>多人用会打架</b><span>v1 是单租户的。团队几个运营一起用,参数、记忆、历史会互相干扰——需要「同品类共享经验、但各自参数互不影响」的租户模型。</span></li>
+      <li><b>失败会「静默」</b><span>立项时踩过一个代价很大的坑:账户欠费导致 LLM 调用全部被拒 → 相关性评分全部兜底 → 关键词全被过滤 → 任务显示 100% 完成,报告却是空的。系统必须学会「响亮地报错」,而不是交付一份成功的空报告。</span></li>
+    </ul>
+    <p>v2 就是冲着这三点重构的——并把它作为 Kaggle「AI Agents: Intensive Vibe Coding Capstone Project」的作品提交(已提交)。下面是重点。</p>
+  </section>
+
+  <!-- v2 架构 -->
+  <section class="chapter">
+    <div class="chapter__num">04 · v2 · 架构</div>
+    <h2 class="chapter__title">从「一条流水线」到「会自我把关的多智能体系统」</h2>
+    <p>核心思路:<b>原来能用的分析流水线一行不改</b>,把它整体封装成「工具」,在它之上加一层真正负责「判断」的智能体——判断该不该跑、跑得好不好、要不要重跑。</p>
+
+    <div class="arch">
+      <div class="arch__row">
+        <div class="arch__box arch__box--accent"><span class="arch__tag">COORDINATOR</span><b>协调智能体</b><small>Google ADK · 顺序编排下面四层</small></div>
+      </div>
+      <div class="arch__line" aria-hidden="true"></div>
+      <div class="arch__row">
+        <div class="arch__box"><span class="arch__tag">① 输入闸</span><b>够不够格才放行</b><small>确定性校验 + 语义判断 · 不合格「响亮终止」,不产出空报告</small></div>
+      </div>
+      <div class="arch__line" aria-hidden="true"></div>
+      <div class="arch__row">
+        <div class="arch__box arch__box--plugin"><span class="arch__tag">② MCP 工具层</span><b>v1 引擎(7 节点)· 零改动封装</b><small>把「能力」暴露成标准工具,别的 Agent 也能复用</small></div>
+      </div>
+      <div class="arch__line" aria-hidden="true"></div>
+      <div class="arch__row arch__row--two">
+        <div class="arch__box"><span class="arch__tag">③ 评审循环</span><b>格式审计 → 定向重跑</b><small>确定性检查报告 · 哪一步出错就重跑哪一步 · 三道刹车防死循环</small></div>
+        <div class="arch__box"><span class="arch__tag">④ 质量裁判</span><b>LLM 模拟资深运营打分</b><small>可执行性 / 覆盖度 / 有没有编造 / 能否溯源</small></div>
+      </div>
+      <div class="arch__line" aria-hidden="true"></div>
+      <div class="arch__row">
+        <div class="arch__box arch__box--plugin"><span class="arch__tag">记忆层</span><b>按品类共享经验 · 按运营隔离参数</b><small>交付后异步写入 · 「参数组合 → 效果」的沉淀</small></div>
+      </div>
+    </div>
+    <p class="demo__caption">上层负责「判断」,下层负责「干活」。红框是入口,蓝框是复用与沉淀。整套系统的铁律:参数是人改的数据,LLM 只读记忆、只出文字建议,永不写参数、永不碰代码。</p>
+  </section>
+
+  <!-- v2 设计取舍 -->
+  <section class="chapter">
+    <div class="chapter__num">05 · v2 · 设计取舍</div>
     <h2 class="chapter__title">哪些路没走,为什么</h2>
 
     <div class="tradeoff">
-      <div class="tradeoff__q">为什么是四标签匹配度模型,而不是 0–100 评分?</div>
-      <p>单一数字评分让运营人员需要做二次判断(「75 分到底要不要做?」),而 蓝海 / 红海 / 差距 / 中性 四个标签直接对应决策动作——蓝海做、红海避、差距补、中性观察。产品语言要对齐用户语言,不是产品语言更「专业」。</p>
+      <div class="tradeoff__q">为什么把 v1 引擎封装成工具,而不是推翻重写?</div>
+      <p>v1 的分析流水线本身没问题——节点并发、成本熔断、断点续跑都做到了,真正缺的是「判断」。把它整体封成 MCP 工具,能力零损耗复用,新加的智能体层只负责真正需要判断的事。不为了「显得更新」而重写一个能用的东西。</p>
     </div>
 
     <div class="tradeoff">
-      <div class="tradeoff__q">为什么把流程拆成 7 步,而不是端到端一个大模型?</div>
-      <p>端到端模型不可调试。一旦输出不对,运营不知道是哪一步出错,只能整体推翻。分成 7 步之后,每一步的产出都可以单独检查、单独优化、单独让运营介入。这是 ToB 工作流系统的核心设计原则。</p>
+      <div class="tradeoff__q">为什么只拆 3 个真 Agent,而不是拆得越多越好?</div>
+      <p>铁律是「单 Agent 扛得住就别拆,只在真正互相干扰的关注点上拆」。这里唯二会互相干扰的关注点是:生成 vs 评判(所以有独立的评审循环 + 裁判),以及「值不值得跑」的前置判断(所以有独立的输入闸)。其余环节没有协商需求,留在流水线里顺序执行性价比更高。<b>能证明「知道什么时候不该拆」,比「什么都拆」更值钱。</b></p>
     </div>
 
     <div class="tradeoff">
-      <div class="tradeoff__q">为什么产出三份报告,而不是一份大报告?</div>
-      <p>三份报告对应三个不同的使用场景:关键词矩阵给采购看,竞品分析给老板看,运营建议给执行同事看。同一个文档给不同人看,没有人会真的读完。</p>
+      <div class="tradeoff__q">为什么记忆按品类共享、参数按运营隔离?</div>
+      <p>记忆是「这个品类通常什么参数组合效果好」的经验,同品类运营之间共享有意义;参数是「我这单业务的实际设置」,运营之间必须互不干扰。两者的作用域不一样,不能因为共享了记忆就误连成共享参数——多租户系统里,把「共享什么、隔离什么」想清楚是第一位的。</p>
+    </div>
+
+    <div class="tradeoff">
+      <div class="tradeoff__q">质量裁判打了低分,为什么不让它自动打回重写?</div>
+      <p>因为盲目重跑只会产出雷同内容(引擎的报告 prompt 目前不接受「批评」作为输入)。所以裁判打低分时,报告照常交付,但会标记「建议人工复核」并附上具体问题——不静默拦截,也不假装没问题。诚实边界写进代码,而不是写进文档。</p>
     </div>
   </section>
 
-  <!-- 技术路线 -->
+  <!-- v2 生产工程 -->
   <section class="chapter">
-    <div class="chapter__num">05 · 技术路线</div>
-    <h2 class="chapter__title">从需求到交付,一个人跑通规范流程</h2>
-    <p>不是脚本堆叠,是按规范软件工程做的可交付系统:从客户访谈到部署 + 交接文档,全链路自己走通。</p>
+    <div class="chapter__num">06 · v2 · 生产工程</div>
+    <h2 class="chapter__title">按「真的要上线扛 100–500 人」的标准做加固</h2>
+    <p>作品做完后,我又拿它当真产品,按一家 100–500 人规模运营公司的部署场景做了四轮生产就绪加固。原则是:<b>每一项都真实做故障注入验证,不是「配了就假设生效」。</b></p>
     <ul class="nodes">
-      <li><b>需求</b><span>与亚马逊运营访谈,把「3–5 天的关键词 + 竞品调研」拆成可自动化的判断流程。</span></li>
-      <li><b>设计</b><span>7 节点 Agent 流水线 + 一份 19 个业务参数的客户决策手册(阈值让客户拍板,而非写死)。</span></li>
-      <li><b>开发</b><span>FastAPI + Celery + Redis + MinIO + Next.js 14;Provider 抽象层(注册表模式),双供应商(OpenAI / 千问)业务代码不感知。</span></li>
-      <li><b>测试</b><span>14 个 Prompt 包各带 5 类夹具(标准 / 变体 / 边界 / 对抗)+ 独立测试运行器;端到端 mock 跑通 7 节点 + 3 报告。</span></li>
-      <li><b>可靠性</b><span>三层兜底(schema 校验 / 一致性投票 / 成本熔断);节点失败从节点头重试、缓存命中跳过。</span></li>
-      <li><b>部署 & 交接</b><span>docker-compose 七服务一键起 + alembic 迁移;交付 HANDOVER / USER_GUIDE / DEVELOPMENT 三份文档。</span></li>
+      <li><b>真实认证</b><span>把「信任请求头」换成 JWT 登录会话,角色写进签名令牌。验证方式:伪造管理员请求头依然被拒(403)。</span></li>
+      <li><b>生产化部署</b><span>代码烤进镜像、多进程服务、崩溃自动重启、资源硬限制。做故障注入时暴露出两个真实问题——内存限制不锁 swap 等于没锁、编排文件的端口清空从没真正生效——都定位并修掉了。</span></li>
+      <li><b>吞吐与排队</b><span>并发上调并核算过数据库连接预算;任务提交后返回真实的排队位置与预计等待,而不是让用户干等。真实历史数据算容量,不拍脑袋。</span></li>
+      <li><b>安全 / 质量层接入</b><span>把上面架构里的输入闸、格式审计、质量裁判,从「演示脚本」真正接进用户会走的服务路径:提交前确定性校验挡住坏数据,交付后异步质检并写入记忆。</span></li>
     </ul>
+    <p>这一段最想说明的不是「我是底层调试专家」,而是<b>一种验证纪律</b>:任何「做完了」的结论,都要有一次真实的故障注入或复现证据顶着,而不是看配置觉得应该生效。过程中发现的每个问题,怎么发现、怎么证伪,都在项目文档里留了痕。</p>
   </section>
 
   <!-- 现状 -->
   <section class="chapter">
-    <div class="chapter__num">06 · 现状</div>
-    <h2 class="chapter__title">部署状态与可见性</h2>
-    <p>已在跨境电商运营场景中部署使用,持续迭代。涉及客户的业务数据不公开,代码仓库见 GitHub。</p>
-    <p>可靠性上做了三层兜底:JSON schema 校验、边界 case 一致性投票、单任务成本熔断;LLM 调用全程记录耗时/成本/是否命中缓存——让每一步产出都可检查、可追溯。</p>
+    <div class="chapter__num">07 · 现状与下一步</div>
+    <h2 class="chapter__title">两个版本各自的真实状态</h2>
+    <p><b>v1</b>:已在真实跨境电商运营场景部署使用。涉及客户业务数据不公开。</p>
+    <p><b>v2</b>:多智能体重构 + 四轮生产加固已完成并在本地真实数据上端到端验证通过(质量裁判曾真的抓到报告里编造的数字并判不合格),已作为 Kaggle capstone 提交。<b>尚未部署上线,仍在优化中</b>——下一步方向是引入领域知识库(把亚马逊品类的运营经验沉淀成可检索的知识,让系统的判断更贴合具体品类,而不只依赖单次输入)。</p>
     <div class="detail__status">
       <span class="detail__link is-private">源码仓库私有(涉客户业务数据)· 可应约提供只读权限或演示</span>
     </div>
