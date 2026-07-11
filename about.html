@@ -57,16 +57,26 @@
 
   <!-- Tech stack -->
   <div class="section-h">04 · 技术栈</div>
-  <p>我的重心不在"调 prompt",而在 <strong>Agent 的工程化</strong>:设计好的 harness(约束、工具、上下文的编排),把上下文当工程资产来管理,并<strong>用结果评估驱动版本迭代</strong>——让 agent 能跑、可验证、不失控。</p>
+  <p>我的重心不在"调 prompt",而在 <b>Agent 的工程化</b>:设计 harness、把上下文当工程资产、用<b>结果评估(eval)驱动迭代</b>——这也是 2026 年 AI 产品 / 解决方案岗最看重、却最少人真正做过的能力。下面按「能独立交付」和「理解原理」<b>分开列,不混</b>。</p>
+
+  <div class="skills-tier">能独立交付 · 项目已落地</div>
   <dl class="skills">
-    <div><dt>Agent 工程方法</dt><dd>Harness 设计 · 工程化上下文(Context Engineering)· Eval 驱动迭代(按结果评估调 agent)· 版本化 Prompt 包 + 夹具测试</dd></div>
-    <div><dt>Agent 编排</dt><dd>LangGraph 状态机 · 多 Agent 协同(NGT)· asyncio 并行扇出 · Provider 抽象层 · A2A(Agent2Agent)协议</dd></div>
-    <div><dt>可信度工程</dt><dd>检索相关性闸门 · 无据熔断降级 · 信源可追溯 · 一致性投票 / JSON schema 校验 · 成本熔断</dd></div>
-    <div><dt>大模型</dt><dd>GPT · Gemini · DeepSeek · Qwen(强制异构)· OpenAI 兼容接口 · Embedding / 语义相似度</dd></div>
-    <div><dt>后端 & 数据</dt><dd>FastAPI · Celery + Redis · SQLAlchemy 2.0(async)· PostgreSQL / SQLite · Alembic 迁移 · MinIO</dd></div>
-    <div><dt>前端</dt><dd>Next.js 14 · React + Vite · Tailwind CSS</dd></div>
-    <div><dt>语言 & 部署</dt><dd>Python · TypeScript / JavaScript · SQL · Docker / docker-compose · Git</dd></div>
+    <div><dt>Agent 工程</dt><dd>harness 设计 · 工程化上下文 · LangGraph 状态机 · 多智能体协同(NGT,自创)· MCP / A2A 协议 · Provider 抽象层 · asyncio 并行</dd></div>
+    <div><dt>生产级 RAG</dt><dd>结构感知切块 · 混合检索(BM25 + 向量 + RRF)· cross-encoder 重排 · RAGAS 评估</dd></div>
+    <div><dt>评估 / 可信度</dt><dd>eval 驱动迭代 · 版本化 Prompt 包 + 夹具测试 · maker-checker · 相关性闸门 / 无据熔断 · JSON schema 校验 · 一致性投票 · 成本熔断 · 信源可追溯</dd></div>
+    <div><dt>大模型应用</dt><dd>GPT / Gemini / DeepSeek / Qwen(异构)· OpenAI 兼容接口 · RAG · Function Calling · Embedding / 语义相似度</dd></div>
+    <div><dt>后端 & 数据</dt><dd>FastAPI · Celery + Redis · MinIO · PostgreSQL / SQLite · SQLAlchemy(async)· Alembic 迁移</dd></div>
+    <div><dt>前端 & 交付</dt><dd>Next.js · React + Vite · Tailwind · Docker / compose · Git · 规范开发(测试 / 迁移 / 分层 / 交接文档)</dd></div>
+    <div><dt>语言</dt><dd>Python · TypeScript / JavaScript · SQL</dd></div>
   </dl>
+
+  <div class="skills-tier">理解原理 · 能从原理分析(非生产实操)</div>
+  <dl class="skills">
+    <div><dt>Transformer</dt><dd>自注意力 · 多头注意力 · 位置编码 · KV Cache</dd></div>
+    <div><dt>推理优化</dt><dd>连续批处理 · PagedAttention · 投机解码</dd></div>
+    <div><dt>能力边界</dt><dd>能从原理层面分析 LLM 的行为与局限,判断"某个方案该不该用、为什么"</dd></div>
+  </dl>
+  <p class="skills-note">这一层是<b>原理级理解</b>——用来判断"该用什么方案、为什么",不代表我做过生产级底层部署。把"能做"和"懂原理"分清,是我认为诚实该有的样子。</p>
 
   <!-- Philosophy -->
   <div class="section-h">05 · 工作哲学</div>

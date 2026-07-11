@@ -272,7 +272,7 @@ p:last-child { margin-bottom: 0; }
 .skills { margin: 1.1rem 0 0; }
 .skills > div {
   display: grid;
-  grid-template-columns: 6rem 1fr;
+  grid-template-columns: 7rem 1fr;
   gap: 1.4rem;
   padding: 0.95rem 0;
   border-top: 1px solid var(--rule-soft);
@@ -297,6 +297,19 @@ p:last-child { margin-bottom: 0; }
 @media (max-width: 480px) {
   .skills > div { grid-template-columns: 1fr; gap: 0.3rem; padding: 0.85rem 0; }
 }
+
+/* 技能栈:分层标签 + 诚实注 */
+.skills-tier {
+  margin: 1.9rem 0 0.1rem;
+  font-family: var(--sans);
+  font-size: 0.82rem; font-weight: 600; letter-spacing: 0.01em;
+  color: var(--accent-deep);
+}
+.skills-note {
+  margin-top: 0.95rem;
+  font-size: 0.92rem; color: var(--ink-mute); line-height: 1.6;
+}
+.skills-note b { color: var(--ink); font-weight: 600; }
 
 /* Section header — centered, bold
    -------------------------------------------------------------------------- */
