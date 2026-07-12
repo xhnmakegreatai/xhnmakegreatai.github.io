@@ -44,6 +44,30 @@
     先交付了能用的 v1,再把它重构成一个站得住脚的多智能体系统。
   </p>
 
+  <div class="metrics">
+    <div class="metrics__cell">
+      <span class="metrics__value">3–5天 → 30min</span>
+      <span class="metrics__label">单次调研耗时压缩(实测 28.8 分钟)</span>
+    </div>
+    <div class="metrics__cell">
+      <span class="metrics__value">$0.15</span>
+      <span class="metrics__label">单次完整分析成本 · 74 次 LLM 调用 / 22 万 token</span>
+    </div>
+    <div class="metrics__cell">
+      <span class="metrics__value">4 / 4</span>
+      <span class="metrics__label">生产阻塞项(P0)全部修复,逐项故障注入验证</span>
+    </div>
+    <div class="metrics__cell">
+      <span class="metrics__value">3.0 FAIL</span>
+      <span class="metrics__label">质量裁判真实抓到报告编造数据判不合格的一次评分</span>
+    </div>
+    <div class="metrics__cell">
+      <span class="metrics__value">6+</span>
+      <span class="metrics__label">迭代中发现并修复的真实缺陷,全程文档留痕</span>
+    </div>
+  </div>
+  <p class="demo__caption">以上数字全部来自真实运行记录与迭代文档,非估算。</p>
+
   <!-- 问题 -->
   <section class="chapter">
     <div class="chapter__num">01 · 问题</div>
@@ -176,9 +200,22 @@
     <p>这一段最想说明的不是「我是底层调试专家」,而是<b>一种验证纪律</b>:任何「做完了」的结论,都要有一次真实的故障注入或复现证据顶着,而不是看配置觉得应该生效。过程中发现的每个问题,怎么发现、怎么证伪,都在项目文档里留了痕。</p>
   </section>
 
+  <!-- 技术栈 -->
+  <section class="chapter">
+    <div class="chapter__num">07 · 技术栈</div>
+    <h2 class="chapter__title">分层技术栈</h2>
+    <ul class="nodes">
+      <li><b>智能体层(v2)</b><span>Google ADK(LlmAgent / SequentialAgent / LoopAgent + 回调确定性刹车)· MCP(FastMCP,8 工具)· LiteLLM · LLM-as-Judge 四维评分</span></li>
+      <li><b>引擎层(v1)</b><span>LangGraph 7 节点(2/3 节点并发)· OpenAI / 千问双供应商(注册表模式 Provider 抽象,业务代码不感知)· embedding 预筛 + 边界 self-consistency 投票 · 成本熔断 / 断点续跑</span></li>
+      <li><b>服务与数据</b><span>FastAPI · Celery(prefork,连接预算核算过的并发)· PostgreSQL(参数版本化 / append-only 审计 / 记忆)· Redis(队列 / 缓存 / 双层限流)· MinIO · Alembic 迁移</span></li>
+      <li><b>前端</b><span>Next.js 14 · Tailwind · shadcn/ui · SSE 实时进度 + polling 双保险 · 排队位置 / ETA</span></li>
+      <li><b>生产与质量</b><span>Docker Compose 生产 overlay(gunicorn×uvicorn / 资源硬限 / 崩溃自愈)· JWT + bcrypt · 接口级限流 + CORS 白名单 · evals 回归闸(每轮迭代 GATE PASS 才收尾)· 14 个 Prompt 包 × 5 类测试夹具</span></li>
+    </ul>
+  </section>
+
   <!-- 现状 -->
   <section class="chapter">
-    <div class="chapter__num">07 · 现状与下一步</div>
+    <div class="chapter__num">08 · 现状与下一步</div>
     <h2 class="chapter__title">两个版本各自的真实状态</h2>
     <p><b>v1</b>:已在真实跨境电商运营场景部署使用。涉及客户业务数据不公开。</p>
     <p><b>v2</b>:多智能体重构 + 四轮生产加固已完成并在本地真实数据上端到端验证通过(质量裁判曾真的抓到报告里编造的数字并判不合格),已作为 Kaggle capstone 提交。<b>尚未部署上线,仍在优化中</b>——下一步方向是引入领域知识库(把亚马逊品类的运营经验沉淀成可检索的知识,让系统的判断更贴合具体品类,而不只依赖单次输入)。</p>
