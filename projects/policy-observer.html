@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>policy-observer · 双引擎跨国政策研判系统 — 薛豪楠</title>
-<meta name="description" content="policy-observer — 双引擎跨国政策研判系统。国产 LLM 解读国内政策语境,海外 LLM 理解地缘叙事,综合层做交叉研判。" />
+<title>policy-observer · 可信的跨国政策研判系统 — 薛豪楠</title>
+<meta name="description" content="policy-observer — 双引擎跨国政策研判系统,把「可信」做进检索与研判:生产级 RAG(向量+BM25+rerank)、多语言语义闸门与熔断、分层评测、政策关系图、每日增量融合的知识库。" />
 <!-- 分享卡片:部署后把 og:image / twitter:image 换成绝对地址 https://你的域名/assets/og-cover.jpg -->
 <meta property="og:type" content="article" />
 <meta property="og:locale" content="zh_CN" />
-<meta property="og:title" content="policy-observer · 双引擎跨国政策研判系统" />
-<meta property="og:description" content="国产 LLM 解读国内政策语境,海外 LLM 理解地缘叙事,综合层做交叉研判。" />
+<meta property="og:title" content="policy-observer · 可信的跨国政策研判系统" />
+<meta property="og:description" content="把「可信」做进检索与研判:生产级 RAG、多语言语义闸门/熔断、分层评测、政策关系图、每日增量融合知识库。" />
 <meta property="og:image" content="https://xhnmakegreatai.github.io/assets/og-cover.jpg" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:image" content="https://xhnmakegreatai.github.io/assets/og-cover.jpg" />
@@ -34,46 +34,43 @@
 
   <a class="detail__back" href="../index.html#projects">返回项目列表</a>
 
-  <div class="detail__crumb"><span class="accent">PROJECT 02</span> · 跨国政策研判 · 双引擎架构 · MULTI-AGENT</div>
-  <h1 class="detail__title">policy-observer <em>· 双引擎跨国政策研判系统</em></h1>
-  <p class="detail__subtitle">客户类型:政策敏感行业(医药 / 能源 / 跨境贸易 / 教育)· 状态:设计与原型完成,持续磨合中</p>
+  <div class="detail__crumb"><span class="accent">PROJECT 02</span> · 跨国政策研判 · 生产级 RAG · 可信度工程</div>
+  <h1 class="detail__title">policy-observer <em>· 可信的跨国政策研判系统</em></h1>
+  <p class="detail__subtitle">面向政策敏感行业(医药 / 能源 / 跨境贸易)· 把「可信」做进检索与研判,并用评测证明</p>
 
   <p class="detail__lede">
     双引擎跨国政策研判系统——<br />
-    国产 LLM 解读国内政策语境,海外 LLM 理解地缘叙事,<br />
-    综合层做交叉研判,NGT 作为深度研判插件。
+    国产 / 海外双模型交叉研判,生产级 RAG 检索,<br />
+    每一步都为一件事服务:让 AI 的判断可被信任、且有数字撑腰。
   </p>
 
-  <!-- 问题 -->
+  <!-- 指标条 -->
+  <div class="metrics">
+    <div class="metric"><b>77%</b><span>检索 R@1<br/>(纯词面 12%)</span></div>
+    <div class="metric"><b>0.93</b><span>研判忠实度<br/>faithfulness</span></div>
+    <div class="metric"><b>0.83</b><span>引用准确率<br/>citation</span></div>
+    <div class="metric"><b>100%</b><span>跨语言召回<br/>中问英文政策</span></div>
+  </div>
+  <p class="demo__caption">数字来自 17 条人工校订黄金集上的分层评测(见下方「评测」)。</p>
+
+  <!-- 它做什么 -->
   <section class="chapter">
-    <div class="chapter__num">01 · 问题</div>
-    <h2 class="chapter__title">客户场景与真实痛点</h2>
-    <p>政策敏感行业(医药、能源、跨境贸易、教育等)对政策动向高度依赖,一条新政可能直接决定一个业务方向能不能继续做。</p>
-    <p>但单一信息源和单一模型容易产生偏差——国产模型对国内政策语境理解深,但对国际地缘叙事相对弱;海外模型对国际视角理解深,但对中文政策的「语境密度」识别有限。</p>
-    <p>客户描述的真实痛点是:「我们订了好几个研究服务,每家都说自己的视角对,但我没法判断到底信谁。我想要的不是更多信息,是更可靠的对比与综合。」</p>
+    <div class="chapter__num">01 · 它做什么</div>
+    <h2 class="chapter__title">给政策敏感行业一个「可信」的研判</h2>
+    <p>医药、能源、跨境贸易这些行业高度依赖政策动向,一条新政可能直接决定一个业务方向能不能继续做。但单一信息源、单一模型容易产生偏差,客户真正要的<strong style="color:var(--ink);font-weight:600">不是更多信息,是更可靠的对比与综合</strong>。</p>
+    <p>系统用双引擎并行研判 + 综合层裁定给出结论;而我最在意、也是整个系统的主线——<strong style="color:var(--ink);font-weight:600">让它知道自己什么时候不该被信任,并把这件事做进检索与评测里</strong>。</p>
   </section>
 
-  <!-- 设计 -->
+  <!-- 系统架构 -->
   <section class="chapter">
-    <div class="chapter__num">02 · 设计</div>
-    <h2 class="chapter__title">产品逻辑与技术架构</h2>
-    <p>双引擎并行,综合层裁定。国内观察站用国产 LLM 处理国内政策原文,全球观察站用海外 LLM 处理国际媒体与政策分析,综合引擎做交叉研判产出最终结论。NGT-AI 作为深度研判插件,处理复杂决策场景。</p>
-
-    <div class="subhead">技术架构 · 三节点 + 插件</div>
-    <ul class="nodes">
-      <li><b>Node A</b><span><strong style="color:var(--ink);font-weight:500">国内观察站</strong> — 国产模型,负责中文政策原文解读与本土语境</span></li>
-      <li><b>Node B</b><span><strong style="color:var(--ink);font-weight:500">全球观察站</strong> — 海外模型,负责国际叙事与跨国视角</span></li>
-      <li><b>Node C</b><span><strong style="color:var(--ink);font-weight:500">综合引擎</strong> — 接收 A / B 的产出,做交叉研判</span></li>
-      <li><b>+ NGT</b><span><strong style="color:var(--ink);font-weight:500">深度研判插件</strong> — 对高复杂度决策启用 6 阶段多 Agent 协同</span></li>
-      <li><b>解耦</b><span>三个节点可独立调用,也可组合订阅</span></li>
-    </ul>
-  </section>
-
-  <!-- 架构图 -->
-  <section class="chapter">
-    <div class="chapter__num">03 · 架构图</div>
-    <h2 class="chapter__title">数据如何流动</h2>
+    <div class="chapter__num">02 · 系统架构</div>
+    <h2 class="chapter__title">从知识库到研判的分层系统</h2>
+    <p>底层是一个持续维护的政策知识库,上面是生产级 RAG 检索,再上面是双引擎研判 + 综合裁定,并有用户长期记忆做个性化。</p>
     <div class="arch">
+      <div class="arch__row">
+        <div class="arch__box arch__box--plugin"><span class="arch__tag">知识库层</span><b>政策知识库</b><small>生产级 RAG(向量+BM25+rerank)· 政策关系图 · 每日增量融合</small></div>
+      </div>
+      <div class="arch__line" aria-hidden="true"></div>
       <div class="arch__row arch__row--two">
         <div class="arch__box"><span class="arch__tag">NODE A</span><b>国内观察站</b><small>国产 LLM · 中文政策原文</small></div>
         <div class="arch__box"><span class="arch__tag">NODE B</span><b>全球观察站</b><small>海外 LLM · 国际地缘叙事</small></div>
@@ -87,84 +84,123 @@
         <div class="arch__box arch__box--plugin"><span class="arch__tag">PLUGIN</span><b>NGT-AI 深度研判插件</b><small>仅重大决策点启用 · 6 阶段多 Agent 协同</small></div>
       </div>
     </div>
-    <p class="demo__caption">双引擎并行输出 → 综合层交叉裁定。三个节点可独立调用，也可组合订阅。</p>
+    <p class="demo__caption">双引擎并行 → 综合层交叉裁定 → 重大决策点启用 NGT。旁挂用户长期记忆(个性化,带护栏)。三节点可独立调用,也可组合订阅。</p>
   </section>
 
-  <!-- 演示 -->
+  <!-- 检索与接地度 -->
   <section class="chapter">
-    <div class="chapter__num">04 · 演示</div>
-    <h2 class="chapter__title">真实运行 · 与它为什么可信</h2>
-    <p>架构讲完,关键是它产出的东西能不能信。这里放一段真实运行录屏、两张关键产出截图,以及支撑它们的设计思路。</p>
+    <div class="chapter__num">03 · 检索:混合 + 重排 + 语义闸门</div>
+    <h2 class="chapter__title">让研判只建立在真正相关的信源上</h2>
+    <p>研判可不可信,第一关在检索。系统用<strong style="color:var(--ink);font-weight:600">混合检索</strong>(向量补语义、BM25 补文号/专名精确匹配)+ <strong style="color:var(--ink);font-weight:600">cross-encoder 重排</strong>召回信源,再过一道<strong style="color:var(--ink);font-weight:600">多语言语义闸门</strong>:分数不够的一律判为不相关。一条相关的都没有时,直接<strong style="color:var(--ink);font-weight:600">熔断</strong>——诚实说「无法据此研判」,拒绝在无证据下臆测。</p>
 
     <figure class="shot shot--video">
       <video src="../assets/po-demo.mp4" controls muted playsinline preload="metadata">
         <div class="shot__ph">▶ 运行录屏 · 前端发起研判 → 生成四层研判报告</div>
       </video>
-      <figcaption>真实运行录屏:在前端发起一次政策研判 → 系统现生成四层研判报告(中国 / 全球 / 综合 / NGT)。</figcaption>
+      <figcaption>真实运行录屏:前端发起一次政策研判 → 生成四层研判报告(中国 / 全球 / 综合 / NGT)。</figcaption>
     </figure>
 
     <figure class="shot">
       <img src="../assets/po-report.png" alt="集成电路税收优惠研判报告(信源依据)" loading="lazy" />
-      <figcaption>① 完整研判(「集成电路企业税收优惠」):顶部列「信源依据」而非一个笼统评分;相关性 1/1,结论带信源引用、可回溯原文。</figcaption>
+      <figcaption>① 完整研判(「集成电路企业税收优惠」):顶部列「信源依据」而非笼统评分;相关性 1/1,结论带信源引用、可回溯原文。</figcaption>
     </figure>
     <figure class="shot">
       <img src="../assets/po-fallback.png" alt="检索熔断:拒绝无据研判" loading="lazy" />
-      <figcaption>② 检索熔断:查不到相关信源时,系统明说「无法据此研判」、拒绝在无证据下臆测——知道自己何时不可信。</figcaption>
+      <figcaption>② 检索熔断:查不到相关信源时,系统明说「无法据此研判」——知道自己何时不可信。</figcaption>
     </figure>
 
-    <div class="subhead">设计思路 · 以「集成电路税收优惠」为例</div>
-    <p>这个查询最能说明系统的「接地度」设计。政策库里其实混着一堆「进口税收优惠」「跨境电商退税」政策——它们都蹭到了「税收 / 优惠」这种<strong style="color:var(--ink);font-weight:600">通用政策工具词</strong>,一不小心就被当成相关信源凑数,让研判看起来「有据」实则跑题。</p>
-    <p>我的做法:相关性闸门要求信源必须命中查询的<strong style="color:var(--ink);font-weight:600">主体词</strong>(集成电路),只蹭通用词的一律判为不相关、丢弃。于是这一题最终只留下 1 条真正相关的政策——<strong style="color:var(--ink);font-weight:600">宁缺毋滥</strong>。研判只建立在真正相关的信源上;一条相关的都没有时,就走上面的熔断。</p>
-    <p class="demo__caption">「信源与问题是否真的相关」这一关,才是决策类 AI 可不可信的分水岭。对系统更深一层的质量自审,见下方「现状」。</p>
+    <div class="subhead">消融:每个组件为什么必要</div>
+    <p>混合检索 + 重排不是堆技术,每一层都用消融验证过贡献(对照:纯词面检索):</p>
+    <div class="abl-wrap">
+      <table class="abl">
+        <thead><tr><th>检索配置</th><th>R@1</th><th>Recall@5</th><th>精确匹配</th><th>跨语言</th><th>MRR</th></tr></thead>
+        <tbody>
+          <tr><td>纯词面(对照)</td><td>12%</td><td>47%</td><td>50%</td><td>50%</td><td>0.25</td></tr>
+          <tr><td>纯向量</td><td>65%</td><td>100%</td><td>80%</td><td>100%</td><td>0.78</td></tr>
+          <tr><td>混合(+BM25)</td><td>63%</td><td>100%</td><td>100%</td><td>100%</td><td>0.74</td></tr>
+          <tr class="abl-best"><td>混合 + 重排</td><td>77%</td><td>100%</td><td>100%</td><td>100%</td><td>0.86</td></tr>
+        </tbody>
+      </table>
+      <p class="abl__note">读法:BM25 专补文号/专名的<strong style="color:var(--ink);font-weight:500">精确匹配</strong>(纯向量 80% → 100%);重排把对的排到最前(R@1 63%→77%)。每个组件都挣到了它的位置。</p>
+    </div>
+    <p class="demo__caption">熔断阈值不是拍脑袋——用「正例该通过 vs 离题该熔断」标定,取两者干净分离处;标定后离题查询熔断、答得出的不误杀。</p>
   </section>
 
-  <!-- 取舍 -->
+  <!-- 评测 -->
   <section class="chapter">
-    <div class="chapter__num">05 · 取舍</div>
+    <div class="chapter__num">04 · 评测:我怎么证明它可信</div>
+    <h2 class="chapter__title">分层评测,不靠「感觉它挺好」</h2>
+    <p>我没有止步于「能产出报告」,而是搭了一套分层评测体系,用可衡量的指标逐层拷问它:</p>
+    <ul class="nodes">
+      <li><b>检索层</b><span>gold 政策的命中率(recall@k)与排名(MRR)——上面那张消融表,量化"找对了吗"。</span></li>
+      <li><b>生成层</b><span><strong style="color:var(--ink);font-weight:500">忠实度 0.93</strong>:研判的每条结论能否被检索到的信源支持(不编造)——这就是「接地度」的量化。</span></li>
+      <li><b>引用层</b><span><strong style="color:var(--ink);font-weight:500">引用准确 0.83</strong>:每个结论标注的信源,是否真的支持该结论。</span></li>
+      <li><b>裁判 + 校准</b><span>指标用 LLM-as-judge 打分,rubric 明确;裁判本身要拿人工标注校准(收尾项)。</span></li>
+    </ul>
+    <p class="demo__caption">黄金集经过人工校订(剔除非政策稿、修正映射),数字才可信。评测是架构支柱,不是最后一道工序。</p>
+  </section>
+
+  <!-- 知识库保鲜 -->
+  <section class="chapter">
+    <div class="chapter__num">05 · 知识库怎么保鲜</div>
+    <h2 class="chapter__title">每日增量融合,而不是越堆越旧</h2>
+    <p>系统每日定时抓取政策源,把新政<strong style="color:var(--ink);font-weight:600">增量融合</strong>进知识库——是融合,不是堆叠:</p>
+    <ul class="nodes">
+      <li><b>去重聚合</b><span>按 fingerprint(标题归一化 + 日期)去重,多源同一政策自动合并信源。</span></li>
+      <li><b>增量索引</b><span>真正的新政才切块 + embedding <strong style="color:var(--ink);font-weight:500">追加</strong>进向量库,不全量重建。</span></li>
+      <li><b>图上融合</b><span>抽新政的引用/文号加进政策关系图;<strong style="color:var(--ink);font-weight:500">反查:新政若废止/修订旧政策,加"废止"边并把旧政策标为失效</strong>。</span></li>
+      <li><b>失效降权</b><span>被废止的政策在检索/研判时降权并标注「已被 X 废止」——知识库保持"现行有效"。</span></li>
+    </ul>
+    <p class="demo__caption">"融合 = 用关系整合新旧",而不是简单追加。这样知识库是被维护的,不是被堆积的。</p>
+  </section>
+
+  <!-- 更进一步 -->
+  <section class="chapter">
+    <div class="chapter__num">06 · 更进一步</div>
+    <h2 class="chapter__title">懂用户 · 与向量够不到的关系</h2>
+
+    <div class="subhead">用户长期记忆(个性化,带护栏)</div>
+    <p>系统从用户的研判历史里学出画像(关注领域、关心的分析角度),个性化检索与研判措辞。但个性化有两条硬护栏:<strong style="color:var(--ink);font-weight:600">领域偏好必须过相关性闸门才注入</strong>(问医保不会被硬塞半导体,防误导幻觉)、<strong style="color:var(--ink);font-weight:600">检索软加权封顶</strong>(高重要度政策仍靠前,防信息茧房)。个性化不为画像伪造相关性——接地度原则延伸到了个性化。</p>
+
+    <div class="subhead">政策关系图 · 多跳</div>
+    <p>政策之间是有边的(废止 / 修订 / 引用 / 依据),向量只能找"相似的",答不了"这条<strong style="color:var(--ink);font-weight:600">依据/引用了哪条</strong>"。系统建了一张政策关系图,关系型问题走图遍历、模糊问题走 RAG——两边各取所长。问「XX 被谁废止了吗」时,图里没有废止边就诚实说「未见废止」,不编造关系。</p>
+  </section>
+
+  <!-- 设计取舍 -->
+  <section class="chapter">
+    <div class="chapter__num">07 · 设计取舍</div>
     <h2 class="chapter__title">哪些路没走,为什么</h2>
 
     <div class="tradeoff">
-      <div class="tradeoff__q">为什么是模块化订阅,而不是强制打包?</div>
-      <p>不同客户对政策研判的颗粒度需求差异极大——小型企业可能只需要「国内观察」日报,大型机构需要全套综合研判。强制打包会让小客户买不起、大客户觉得不够细。</p>
-      <p>解耦设计让产品的客单价区间从一开始就能拉开,客户预算决定订阅深度。</p>
+      <div class="tradeoff__q">检索不到时,为什么选「诚实熔断」而不是「自动改写重试」?</div>
+      <p>自动改写 query 去重试,看起来能提召回。但我实测发现它会把离题查询<strong style="color:var(--ink);font-weight:500">改写成「像政策」的样子</strong>而 spurious 命中(离题误救率约 30%)——这恰恰违背系统的接地度原则。所以模糊查询走前置校验、请用户澄清,而不是让系统自己猜。</p>
     </div>
 
     <div class="tradeoff">
-      <div class="tradeoff__q">为什么把 NGT 设计成「插件」而不是核心流程?</div>
-      <p>早期方案是把 NGT 写死在工作流里,每次研判都跑 6 阶段流程。后来发现:大部分日常政策追踪不需要 6 阶段深度协商,只有「重大决策点」(比如要不要进入某市场)才需要。</p>
-      <p>把 NGT 设计成插件后,系统的响应速度和算力成本都显著优化,同时保留了「必要时启用深度研判」的能力。</p>
+      <div class="tradeoff__q">为什么把 NGT 深度研判设计成「插件」而不是核心流程?</div>
+      <p>大部分日常政策追踪不需要 6 阶段深度协商,只有「重大决策点」(要不要进入某市场)才需要。做成插件后,响应速度和算力成本都显著优化,同时保留「必要时启用深度研判」的能力。</p>
     </div>
 
     <div class="tradeoff">
-      <div class="tradeoff__q">关于「双引擎」是否冗余</div>
-      <p>有人会问「用一个强大的模型不就行了吗」。但实际测试中,同一份政策文本,国产模型和海外模型的解读会在关键判断上分叉——分叉本身就是信号。</p>
-      <p>双引擎不是冗余,是结构化的「压力测试」。</p>
+      <div class="tradeoff__q">「双引擎」是不是冗余?用一个强模型不行吗?</div>
+      <p>实测中,同一份政策,国产模型和海外模型的解读会在关键判断上分叉——<strong style="color:var(--ink);font-weight:500">分叉本身就是信号</strong>。双引擎不是冗余,是结构化的「压力测试」。</p>
     </div>
   </section>
 
-  <!-- 技术路线 -->
+  <!-- 技术栈 + 现状 -->
   <section class="chapter">
-    <div class="chapter__num">06 · 技术路线</div>
-    <h2 class="chapter__title">从需求到部署,按规范走一遍</h2>
-    <p>这不是一个 demo,是按规范软件工程从需求做到部署的系统:分层解耦、有测试、可迁移、可观测。</p>
+    <div class="chapter__num">08 · 技术栈与现状</div>
+    <h2 class="chapter__title">分层技术栈</h2>
     <ul class="nodes">
-      <li><b>需求</b><span>政策敏感行业的真实痛点:要的不是更多信息,是更可靠的对比与综合。</span></li>
-      <li><b>设计</b><span>双引擎 + 综合层 + NGT 插件;uv workspace 五包解耦(shared / china / global / synthesizer / ngt_engine),职责清晰。</span></li>
-      <li><b>开发</b><span>Python 3.12 · FastAPI · LangGraph 状态机 · SQLAlchemy 2.0(async);多 LLM 由 config 驱动的 role-router 注入。</span></li>
-      <li><b>测试</b><span>115 个测试按 Sprint 分层(基础设施 / observer / synthesizer / NGT / 飞书 / 持久化 / 集成),端到端可无外部依赖跑通。</span></li>
-      <li><b>部署</b><span>Docker + docker-compose;PostgreSQL(生产)/ SQLite(开发)双档;缺 API key 自动降级 MockLLM,本地零凭证也能起。</span></li>
-      <li><b>可观测</b><span>所有中间结果分字段持久化到 PostgreSQL JSONB,研判过程可追溯、可复盘。</span></li>
+      <li><b>编排</b><span>LangGraph 状态机 · 双引擎 + 综合 + NGT 插件 · uv workspace 五包解耦 · config 驱动的多 LLM role-router</span></li>
+      <li><b>检索 RAG</b><span>结构感知切块 · 混合检索(BM25 + 向量 + RRF)· cross-encoder 重排 · 多语言语义闸门 / 熔断</span></li>
+      <li><b>评测</b><span>分层评测(检索 / 生成 / 引用)· 消融实验 · 阈值标定 · RAGAS 式指标 · LLM-as-judge</span></li>
+      <li><b>记忆 · 图</b><span>用户长期记忆(ETL + 护栏)· 政策关系图 + 多跳 · 查询路由 · 每日增量融合</span></li>
+      <li><b>工程</b><span>Python 3.12 · FastAPI · SQLAlchemy 2.0(async)· PostgreSQL / SQLite · Alembic · Docker · 115 测试</span></li>
     </ul>
-  </section>
-
-  <!-- 现状 -->
-  <section class="chapter">
-    <div class="chapter__num">07 · 现状</div>
-    <h2 class="chapter__title">部署状态与可见性</h2>
-    <p>设计与原型完成(5 包架构 + 115 个测试),在与目标行业场景持续磨合中。具体客户与部署细节不公开,代码仓库见 GitHub。</p>
-    <p>比起「看起来能用」,我更在意它「什么时候不该被信任」——我对它做过一次投资人级的质量自审,主动揪出「检索不到相关证据却仍自信研判」的问题,并定下三条修正方向:检索失败即熔断、可信度评分纳入信源相关性、强制量化与证伪条件。对决策类 AI,这种「知道自己何时不可信」的能力,才是真正的护城河。</p>
+    <p style="margin-top: 1.4rem;">诚实边界:知识库当前语料规模有限、评测裁判仍待人工校准——但系统有<strong style="color:var(--ink);font-weight:600">每日增量融合机制</strong>持续扩充与保鲜,评测体系也让每一步改动都可被量化验证。比起「看起来能用」,我更在意它「什么时候不该被信任」——这才是决策类 AI 真正的护城河。</p>
     <div class="detail__status">
-      <span class="detail__link is-private">源码仓库私有 · 可应约提供只读权限或演示</span>
+      <span class="detail__link is-private">源码核心开源 · 涉客户部署部分私有 · 可应约提供只读权限或演示</span>
     </div>
   </section>
 

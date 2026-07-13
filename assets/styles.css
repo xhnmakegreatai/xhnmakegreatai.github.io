@@ -1106,6 +1106,39 @@ code {
   padding: 0.08em 0.38em; border-radius: 5px; color: var(--ink);
 }
 
+/* 指标条(项目页数字前置)
+   -------------------------------------------------------------------------- */
+.metrics {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px;
+  background: var(--rule-soft); border: 1px solid var(--rule-soft); border-radius: 16px;
+  overflow: hidden; margin: 1.6rem 0 0.4rem;
+}
+.metric { background: var(--bg); padding: 1.2rem 0.9rem; text-align: center; }
+.metric b {
+  display: block; font-family: var(--serif); font-size: clamp(1.5rem, 3.4vw, 2.1rem);
+  font-weight: 600; color: var(--accent-deep); letter-spacing: -0.02em; line-height: 1;
+}
+.metric span {
+  display: block; margin-top: 0.5rem; font-size: 0.8rem; color: var(--ink-mute);
+  letter-spacing: -0.01em; line-height: 1.35;
+}
+@media (max-width: 560px) { .metrics { grid-template-columns: repeat(2, 1fr); } }
+
+/* 消融表 / 数据表
+   -------------------------------------------------------------------------- */
+.abl-wrap { overflow-x: auto; margin: 1rem 0; }
+.abl { width: 100%; border-collapse: collapse; font-size: 0.92rem; min-width: 30rem; }
+.abl th, .abl td {
+  padding: 0.62rem 0.8rem; text-align: right; border-bottom: 1px solid var(--rule-soft);
+  font-variant-numeric: tabular-nums;
+}
+.abl th:first-child, .abl td:first-child { text-align: left; }
+.abl thead th { color: var(--ink-fade); font-weight: 600; font-size: 0.82rem; border-bottom-color: var(--rule); }
+.abl tbody td:first-child { color: var(--ink-mute); }
+.abl tr.abl-best td { color: var(--ink); font-weight: 600; background: var(--accent-soft); }
+.abl tr.abl-best td:first-child { color: var(--accent-deep); }
+.abl__note { font-size: 0.86rem; color: var(--ink-mute); margin-top: 0.5rem; }
+
 /* Footer
    -------------------------------------------------------------------------- */
 .foot {
