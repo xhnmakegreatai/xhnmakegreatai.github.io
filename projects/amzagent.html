@@ -47,26 +47,22 @@
   <div class="metrics">
     <div class="metrics__cell">
       <span class="metrics__value">3–5天 → 30min</span>
-      <span class="metrics__label">单次调研耗时压缩(实测 28.8 分钟)</span>
+      <span class="metrics__label">单次调研耗时(实测 28.8 分钟)</span>
     </div>
     <div class="metrics__cell">
       <span class="metrics__value">$0.15</span>
-      <span class="metrics__label">单次完整分析成本 · 74 次 LLM 调用 / 22 万 token</span>
+      <span class="metrics__label">单次完整分析成本</span>
     </div>
     <div class="metrics__cell">
-      <span class="metrics__value">4 / 4</span>
-      <span class="metrics__label">生产阻塞项(P0)全部修复,逐项故障注入验证</span>
+      <span class="metrics__value">74 次 / 22万</span>
+      <span class="metrics__label">一次分析的 LLM 调用量 / token 编排规模</span>
     </div>
     <div class="metrics__cell">
-      <span class="metrics__value">3.0 FAIL</span>
-      <span class="metrics__label">质量裁判真实抓到报告编造数据判不合格的一次评分</span>
-    </div>
-    <div class="metrics__cell">
-      <span class="metrics__value">6+</span>
-      <span class="metrics__label">迭代中发现并修复的真实缺陷,全程文档留痕</span>
+      <span class="metrics__value">3 份报告</span>
+      <span class="metrics__label">关键词 Excel / 定位 PDF / 差距 PDF,可直接落地</span>
     </div>
   </div>
-  <p class="demo__caption">以上数字全部来自真实运行记录与迭代文档,非估算。</p>
+  <p class="demo__caption">同一个维度:一次完整分析的耗时、成本、规模与产出。数字均来自真实运行,非估算。<br />(生产加固、质量裁判评分、迭代中修复的真实缺陷等工程证据,见下文正文。)</p>
 
   <!-- 问题 -->
   <section class="chapter">
@@ -183,6 +179,11 @@
     <div class="tradeoff">
       <div class="tradeoff__q">质量裁判打了低分,为什么不让它自动打回重写?</div>
       <p>因为盲目重跑只会产出雷同内容(引擎的报告 prompt 目前不接受「批评」作为输入)。所以裁判打低分时,报告照常交付,但会标记「建议人工复核」并附上具体问题——不静默拦截,也不假装没问题。诚实边界写进代码,而不是写进文档。</p>
+    </div>
+
+    <div class="tradeoff">
+      <div class="tradeoff__q">你怎么知道「裁判」本身可信?打分稳不稳?</div>
+      <p>我实测过一致性:同一份报告让裁判独立评 10 次(生产真实温度,绕开缓存)。维度分很稳(覆盖度标准差 0、可执行性 0.23),但 verdict 会在 3.5 阈值附近翻(6 通过 / 4 不通过)——因为这份报告恰好卡在边界,任何阈值都会翻。<b>结论:清晰的好/烂报告信裁判,边界报告要留人工复核带。我知道我的裁判在哪能信、在哪不能信。</b>而且这次评测顺手抓到一个真 bug——容器缺 pdftotext 导致中文 PDF 被读成乱码、裁判在冤枉报告;修掉才拿到上面这组干净数字。<b>自动裁判的结论,先验证它读到的东西是不是干净的。</b></p>
     </div>
   </section>
 
