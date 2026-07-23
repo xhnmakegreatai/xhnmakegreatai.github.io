@@ -39,7 +39,7 @@
   <p class="detail__subtitle">面向政策敏感行业(医药 / 能源 / 跨境贸易)· 把「可信」做进检索与研判,并用评测证明</p>
 
   <p class="detail__lede">
-    双引擎跨国政策研判系统——<br />
+    双引擎跨国政策研判系统,<br />
     国产 / 海外双模型交叉研判,生产级 RAG 检索,<br />
     每一步都为一件事服务:让 AI 的判断可被信任、且有数字撑腰。
   </p>
@@ -58,7 +58,7 @@
     <div class="chapter__num">01 · 它做什么</div>
     <h2 class="chapter__title">给政策敏感行业一个「可信」的研判</h2>
     <p>医药、能源、跨境贸易这些行业高度依赖政策动向,一条新政可能直接决定一个业务方向能不能继续做。但单一信息源、单一模型容易产生偏差,客户真正要的<strong style="color:var(--ink);font-weight:600">不是更多信息,是更可靠的对比与综合</strong>。</p>
-    <p>系统用双引擎并行研判 + 综合层裁定给出结论;而我最在意、也是整个系统的主线——<strong style="color:var(--ink);font-weight:600">让它知道自己什么时候不该被信任,并把这件事做进检索与评测里</strong>。</p>
+    <p>系统用双引擎并行研判 + 综合层裁定给出结论;而我最在意、也是整个系统的主线:<strong style="color:var(--ink);font-weight:600">让它知道自己什么时候不该被信任,并把这件事做进检索与评测里</strong>。</p>
   </section>
 
   <!-- 系统架构 -->
@@ -91,7 +91,7 @@
   <section class="chapter">
     <div class="chapter__num">03 · 检索:混合 + 重排 + 语义闸门</div>
     <h2 class="chapter__title">让研判只建立在真正相关的信源上</h2>
-    <p>研判可不可信,第一关在检索。系统用<strong style="color:var(--ink);font-weight:600">混合检索</strong>(向量补语义、BM25 补文号/专名精确匹配)+ <strong style="color:var(--ink);font-weight:600">cross-encoder 重排</strong>召回信源,再过一道<strong style="color:var(--ink);font-weight:600">多语言语义闸门</strong>:分数不够的一律判为不相关。一条相关的都没有时,直接<strong style="color:var(--ink);font-weight:600">熔断</strong>——诚实说「无法据此研判」,拒绝在无证据下臆测。</p>
+    <p>研判可不可信,第一关在检索。系统用<strong style="color:var(--ink);font-weight:600">混合检索</strong>(向量补语义、BM25 补文号/专名精确匹配)+ <strong style="color:var(--ink);font-weight:600">cross-encoder 重排</strong>召回信源,再过一道<strong style="color:var(--ink);font-weight:600">多语言语义闸门</strong>:分数不够的一律判为不相关。一条相关的都没有时,直接<strong style="color:var(--ink);font-weight:600">熔断</strong>,诚实说「无法据此研判」,拒绝在无证据下臆测。</p>
 
     <figure class="shot shot--video">
       <video src="../assets/po-demo.mp4" controls muted playsinline preload="metadata">
@@ -106,7 +106,7 @@
     </figure>
     <figure class="shot">
       <img src="../assets/po-fallback.png" alt="检索熔断:拒绝无据研判" loading="lazy" />
-      <figcaption>② 检索熔断:查不到相关信源时,系统明说「无法据此研判」——知道自己何时不可信。</figcaption>
+      <figcaption>② 检索熔断:查不到相关信源时,系统明说「无法据此研判」,也知道自己何时不可信。</figcaption>
     </figure>
 
     <div class="subhead">消融:每个组件为什么必要</div>
@@ -123,7 +123,7 @@
       </table>
       <p class="abl__note">读法:BM25 专补文号/专名的<strong style="color:var(--ink);font-weight:500">精确匹配</strong>(纯向量 80% → 100%);重排把对的排到最前(R@1 63%→77%)。每个组件都挣到了它的位置。</p>
     </div>
-    <p class="demo__caption">熔断阈值不是拍脑袋——用「正例该通过 vs 离题该熔断」标定,取两者干净分离处;标定后离题查询熔断、答得出的不误杀。</p>
+    <p class="demo__caption">熔断阈值不是拍脑袋定的,用「正例该通过 vs 离题该熔断」来标定,取两者干净分离处;标定后离题查询熔断、答得出的不误杀。</p>
   </section>
 
   <!-- 评测 -->
@@ -132,8 +132,8 @@
     <h2 class="chapter__title">分层评测,不靠「感觉它挺好」</h2>
     <p>我没有止步于「能产出报告」,而是搭了一套分层评测体系,用可衡量的指标逐层拷问它:</p>
     <ul class="nodes">
-      <li><b>检索层</b><span>gold 政策的命中率(recall@k)与排名(MRR)——上面那张消融表,量化"找对了吗"。</span></li>
-      <li><b>生成层</b><span><strong style="color:var(--ink);font-weight:500">忠实度 0.93</strong>:研判的每条结论能否被检索到的信源支持(不编造)——这就是「接地度」的量化。</span></li>
+      <li><b>检索层</b><span>gold 政策的命中率(recall@k)与排名(MRR),对应上面那张消融表,量化"找对了吗"。</span></li>
+      <li><b>生成层</b><span><strong style="color:var(--ink);font-weight:500">忠实度 0.93</strong>:研判的每条结论能否被检索到的信源支持(不编造),也就是接地度的量化。</span></li>
       <li><b>引用层</b><span><strong style="color:var(--ink);font-weight:500">引用准确 0.83</strong>:每个结论标注的信源,是否真的支持该结论。</span></li>
       <li><b>裁判 + 校准</b><span>指标用 LLM-as-judge 打分,rubric 明确;裁判本身要拿人工标注校准(收尾项)。</span></li>
     </ul>
@@ -144,12 +144,12 @@
   <section class="chapter">
     <div class="chapter__num">05 · 知识库怎么保鲜</div>
     <h2 class="chapter__title">每日增量融合,而不是越堆越旧</h2>
-    <p>系统每日定时抓取政策源,把新政<strong style="color:var(--ink);font-weight:600">增量融合</strong>进知识库——是融合,不是堆叠:</p>
+    <p>系统每日定时抓取政策源,把新政<strong style="color:var(--ink);font-weight:600">增量融合</strong>进知识库,是融合而不是堆叠:</p>
     <ul class="nodes">
       <li><b>去重聚合</b><span>按 fingerprint(标题归一化 + 日期)去重,多源同一政策自动合并信源。</span></li>
       <li><b>增量索引</b><span>真正的新政才切块 + embedding <strong style="color:var(--ink);font-weight:500">追加</strong>进向量库,不全量重建。</span></li>
       <li><b>图上融合</b><span>抽新政的引用/文号加进政策关系图;<strong style="color:var(--ink);font-weight:500">反查:新政若废止/修订旧政策,加"废止"边并把旧政策标为失效</strong>。</span></li>
-      <li><b>失效降权</b><span>被废止的政策在检索/研判时降权并标注「已被 X 废止」——知识库保持"现行有效"。</span></li>
+      <li><b>失效降权</b><span>被废止的政策在检索/研判时降权并标注「已被 X 废止」,让知识库保持"现行有效"。</span></li>
     </ul>
     <p class="demo__caption">"融合 = 用关系整合新旧",而不是简单追加。这样知识库是被维护的,不是被堆积的。</p>
   </section>
@@ -160,7 +160,7 @@
     <h2 class="chapter__title">懂用户 · 与向量够不到的关系</h2>
 
     <div class="subhead">用户长期记忆(个性化,带护栏)</div>
-    <p>系统从用户的研判历史里学出画像(关注领域、关心的分析角度),个性化检索与研判措辞。但个性化有两条硬护栏:<strong style="color:var(--ink);font-weight:600">领域偏好必须过相关性闸门才注入</strong>(问医保不会被硬塞半导体,防误导幻觉)、<strong style="color:var(--ink);font-weight:600">检索软加权封顶</strong>(高重要度政策仍靠前,防信息茧房)。个性化不为画像伪造相关性——接地度原则延伸到了个性化。</p>
+    <p>系统从用户的研判历史里学出画像(关注领域、关心的分析角度),个性化检索与研判措辞。但个性化有两条硬护栏:<strong style="color:var(--ink);font-weight:600">领域偏好必须过相关性闸门才注入</strong>(问医保不会被硬塞半导体,防误导幻觉)、<strong style="color:var(--ink);font-weight:600">检索软加权封顶</strong>(高重要度政策仍靠前,防信息茧房)。个性化不为画像伪造相关性,接地度原则就这样延伸到了个性化。</p>
 
     <div class="subhead">政策关系图 · 多跳</div>
     <p>政策之间是有边的(废止 / 修订 / 引用 / 依据),向量只能找"相似的",答不了"这条<strong style="color:var(--ink);font-weight:600">依据/引用了哪条</strong>"。系统建了一张政策关系图,关系型问题走图遍历、模糊问题走 RAG——两边各取所长。问「XX 被谁废止了吗」时,图里没有废止边就诚实说「未见废止」,不编造关系。</p>
@@ -173,7 +173,7 @@
 
     <div class="tradeoff">
       <div class="tradeoff__q">检索不到时,为什么选「诚实熔断」而不是「自动改写重试」?</div>
-      <p>自动改写 query 去重试,看起来能提召回。但我实测发现它会把离题查询<strong style="color:var(--ink);font-weight:500">改写成「像政策」的样子</strong>而 spurious 命中(离题误救率约 30%)——这恰恰违背系统的接地度原则。所以模糊查询走前置校验、请用户澄清,而不是让系统自己猜。</p>
+      <p>自动改写 query 去重试,看起来能提召回。但我实测发现它会把离题查询<strong style="color:var(--ink);font-weight:500">改写成「像政策」的样子</strong>而 spurious 命中(离题误救率约 30%),这恰恰违背系统的接地度原则。所以模糊查询走前置校验、请用户澄清,而不是让系统自己猜。</p>
     </div>
 
     <div class="tradeoff">
@@ -183,7 +183,7 @@
 
     <div class="tradeoff">
       <div class="tradeoff__q">「双引擎」是不是冗余?用一个强模型不行吗?</div>
-      <p>实测中,同一份政策,国产模型和海外模型的解读会在关键判断上分叉——<strong style="color:var(--ink);font-weight:500">分叉本身就是信号</strong>。双引擎不是冗余,是结构化的「压力测试」。</p>
+      <p>实测中,同一份政策,国产模型和海外模型的解读会在关键判断上分叉,而<strong style="color:var(--ink);font-weight:500">分叉本身就是信号</strong>。双引擎不是冗余,是结构化的「压力测试」。</p>
     </div>
   </section>
 
@@ -198,7 +198,7 @@
       <li><b>记忆 · 图</b><span>用户长期记忆(ETL + 护栏)· 政策关系图 + 多跳 · 查询路由 · 每日增量融合</span></li>
       <li><b>工程</b><span>Python 3.12 · FastAPI · SQLAlchemy 2.0(async)· PostgreSQL / SQLite · Alembic · Docker · 115 测试</span></li>
     </ul>
-    <p style="margin-top: 1.4rem;">诚实边界:知识库当前语料规模有限、评测裁判仍待人工校准——但系统有<strong style="color:var(--ink);font-weight:600">每日增量融合机制</strong>持续扩充与保鲜,评测体系也让每一步改动都可被量化验证。比起「看起来能用」,我更在意它「什么时候不该被信任」——这才是决策类 AI 真正的护城河。</p>
+    <p style="margin-top: 1.4rem;">诚实边界:知识库当前语料规模有限、评测裁判仍待人工校准,但系统有<strong style="color:var(--ink);font-weight:600">每日增量融合机制</strong>持续扩充与保鲜,评测体系也让每一步改动都可被量化验证。比起看起来能用,我更在意它什么时候不该被信任,这才是决策类 AI 真正的护城河。</p>
     <div class="detail__status">
       <span class="detail__link is-private">源码核心开源 · 涉客户部署部分私有 · 可应约提供只读权限或演示</span>
     </div>

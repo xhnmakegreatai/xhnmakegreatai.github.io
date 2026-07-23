@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>HerCycle · 情侣周期 AI 陪伴小程序 — 薛豪楠</title>
+<meta name="description" content="HerCycle 懂她 — 基于生理周期的情侣双向情感连接系统。女方记录、男方只读同步,AI 翻译成男方可执行的 Do/Don't。一个关于「为低意愿用户做产品」「让 AI 判断可被信任」的产品设计。" />
+<!-- 分享卡片:部署后把 og:image / twitter:image 换成绝对地址 https://你的域名/assets/og-cover.jpg -->
+<meta property="og:type" content="article" />
+<meta property="og:locale" content="zh_CN" />
+<meta property="og:title" content="HerCycle · 情侣周期 AI 陪伴小程序" />
+<meta property="og:description" content="女方记录、男方只读同步,AI 翻译成男方可执行的 Do/Don't。一个关于「为低意愿用户做产品」的产品设计。" />
+<meta property="og:image" content="https://xhnmakegreatai.github.io/assets/og-cover.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://xhnmakegreatai.github.io/assets/og-cover.jpg" />
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg" />
+<link rel="stylesheet" href="../assets/styles.css" />
+</head>
+<body>
+
+<header class="nav" id="nav" data-screen-label="HerCycle — Nav">
+  <div class="shell nav__inner">
+    <a class="nav__brand" href="../index.html">薛豪楠<small>Hao-Nan Xue</small></a>
+    <nav class="nav__links">
+      <a href="../index.html#projects" class="is-active">项目</a>
+      <a href="../agent.html">Agent</a>
+      <a href="../about.html">关于</a>
+      <a href="../index.html#contact">联系</a>
+    </nav>
+  </div>
+</header>
+
+<main class="shell detail" data-screen-label="Project · HerCycle">
+
+  <a class="detail__back" href="../index.html#projects">返回项目列表</a>
+
+  <div class="detail__crumb"><span class="accent">PROJECT 04</span> · 情感科技 · ToC 产品设计 · 个人项目</div>
+  <h1 class="detail__title">HerCycle <em>· 情侣周期 AI 陪伴小程序</em></h1>
+  <p class="detail__subtitle">类型:个人产品项目 · 状态:MVP(Web 版可用 / 微信小程序框架已搭,未正式上线)</p>
+
+  <p class="detail__lede">
+    女方记录生理周期,男方扫码绑定后只读同步,<br />
+    AI 把「她现在处于什么状态」翻译成男方能直接照做的 Do / Don't。<br />
+    这是一个关于「为最不愿意用的那个人做产品」<br />
+    和「让 AI 的关系建议可被信任」的产品设计。
+  </p>
+
+  <!-- 问题 -->
+  <section class="chapter">
+    <div class="chapter__num">01 · 问题</div>
+    <h2 class="chapter__title">真实痛点</h2>
+    <p>情侣之间因为生理周期产生的情绪起伏,常常演变成「理解错位」:她在经历真实的身体与情绪变化,他却不知道此刻该做什么、不该做什么,想关心也使不上劲,一句话说错反而火上浇油。</p>
+    <p>市面上的周期类 App 几乎都是给女生自己看的记录工具,能记录数据,却没解决两个人之间的那道鸿沟。真正的痛点不在「记录」,在「翻译」:把她的状态,翻译成他能懂、能执行的具体动作。</p>
+    <p>而这里最难的一点是:<b>男方是一个「低意愿用户」</b>——他不主动装 App、不想学复杂界面、看到一堆专业术语就退出。任何忽略这一点的设计,都会死在「男朋友根本不用」。</p>
+  </section>
+
+  <!-- 设计 -->
+  <section class="chapter">
+    <div class="chapter__num">02 · 设计</div>
+    <h2 class="chapter__title">产品逻辑与架构</h2>
+    <p>核心链路:<b>她记录 → 他只读同步 → AI 翻译成可执行建议</b>。形态选了微信小程序 + 云开发,因为让男方再单独装一个 App 风险太高,而微信里转发即用、无需注册,把这道门槛降到了最低。</p>
+
+    <div class="subhead">不对称信息架构 · 一个产品,两种人</div>
+    <ol class="steps">
+      <li><b>她的一端(4 个区)</b><span>首页日历 + 周期预测、记录、科普、我的——完整的记录与理解工具</span></li>
+      <li><b>他的一端(只有 2 屏)</b><span>「今天」+「好物」。全大白话、零术语,预测只露结论、藏起复杂度</span></li>
+      <li><b>「她现在的状态」做成天气卡</b><span>不给他看曲线和数据,给他看「今天像什么天气、该带把伞还是该晒太阳」</span></li>
+      <li><b>透明位:他现在看到的指南</b><span>她能在自己的「我的」里,看到「他此刻被推送了什么建议」——信任 + 可截图传播</span></li>
+      <li><b>数据主权在她</b><span>周期数据只有女方可写,男方全程只读;客户端直连数据库关死,写操作在云函数内校验角色</span></li>
+    </ol>
+  </section>
+
+  <!-- 取舍 -->
+  <section class="chapter">
+    <div class="chapter__num">03 · 取舍</div>
+    <h2 class="chapter__title">哪些产品决策是刻意的,为什么</h2>
+
+    <div class="tradeoff">
+      <div class="tradeoff__q">为什么主打「女生主动拉男友」,而不是两边一起获客?</div>
+      <p>因为两类用户的意愿天差地别:她有强动机(希望被理解),他几乎没有主动动机。所以获客与文案全部对准女生,男方端只需要「被拉进来之后一秒看懂、愿意留」。<b>产品设计要顺着动机走,不要假装两边一样积极。</b></p>
+    </div>
+
+    <div class="tradeoff">
+      <div class="tradeoff__q">为什么男方端做成极简 2 屏、全大白话、零术语?</div>
+      <p>因为他是低意愿用户,每多一个术语、多一层复杂界面,都是一次流失。预测的复杂度留在她那端,到他这里只露「今天该怎么做」这一个结论。<b>把复杂留给愿意的人,把简单留给不愿意的人。</b></p>
+    </div>
+
+    <div class="tradeoff">
+      <div class="tradeoff__q">v1.1 里,为什么不给男生也造一个「周期」?</div>
+      <p>男生没有可追踪的生理周期,硬造一个是伪科学。所以改成「状态」(还行 / 累 / 烦 / 压力大 / 低落 / 兴奋,一拍即存的事件型),让关系变成双向平权;而且女版的「理解他」卡刻意<b>不教她忍让、不把男生当需要伺候的对象</b>,兼顾她自己。做情感产品,平权比讨好更长久。</p>
+    </div>
+
+    <div class="tradeoff">
+      <div class="tradeoff__q">为什么建议不靠「调 prompt 的技巧」,而是从真实关系语料里取?</div>
+      <p>解决情感问题,应该从真实的抱怨和期待入手,不靠提示词技巧凭空生成、更不许编造。所以我搭了一条真实关系语料管线:合规抓取公开讨论、用大模型抽取时做「反编造校验」(只保留原句确实存在于页面里的),再蒸馏成可溯源的知识卡去支撑建议。<b>建议的可信,来自它背后有真实来源,不是来自它听起来动听。</b></p>
+    </div>
+  </section>
+
+  <!-- 诚实工程 -->
+  <section class="chapter">
+    <div class="chapter__num">04 · 诚实工程</div>
+    <h2 class="chapter__title">让 AI 的关系建议「可被信任」</h2>
+    <p>关系建议是敏感的,说错话会伤人,碰到健康问题更可能误事。所以这个产品把「可信任」当成硬约束,写进系统:</p>
+    <ul class="nodes">
+      <li><b>AI 不静默兜底</b><span>AI 调用失败时回退到静态建议,并明确标注来源(ai / cache / static / medical),绝不用「假装是 AI 生成」的内容蒙混。</span></li>
+      <li><b>医疗红线</b><span>命中疑似需要就医的症状时,直接跳过 AI、引导就医,不让一个情感陪伴产品去扮演它不该扮演的医生。</span></li>
+      <li><b>数据主权与越权防护</b><span>周期数据只有她可写,越权防护做双关(客户端直连关闭 + 云函数内角色校验);AI key 只在云函数,前端永不持有。</span></li>
+      <li><b>测试不偷打真实 API</b><span>离线测试显式注入 mock,不在跑测试时偷偷调用真实模型,既省钱,也保证测的是逻辑本身。</span></li>
+    </ul>
+    <p>这几条和我其他项目里的原则是同一套:<b>AI 的判断必须知道自己什么时候不该被信任,并把这件事做进产品里。</b></p>
+  </section>
+
+  <!-- 现状 -->
+  <section class="chapter">
+    <div class="chapter__num">05 · 现状</div>
+    <h2 class="chapter__title">进度与诚实边界</h2>
+    <p>这是一个个人产品项目,目前是 <b>MVP</b>:电脑端 Web 版可用(核心周期算法 + 静态建议兜底 + 医疗红线),微信小程序 + 云开发的框架已搭好、待联调上线;真实关系语料管线在建(已入库小样本,待放大后蒸馏成知识卡并接入 RAG)。</p>
+    <p><b>诚实边界:尚未正式上线、没有真实用户数据。</b>它证明的是产品判断与设计取舍,不是「已跑通市场的产品」。前端选定了一套「软糖」视觉方向,落地时替换现有基线。</p>
+    <div class="detail__status">
+      <span class="detail__link is-private">私有仓库(含产品设计与语料)· 可应约提供演示或只读权限</span>
+    </div>
+  </section>
+
+  <nav class="pager" data-screen-label="Pager">
+    <a href="ngt-ai.html"><span class="label">← 上一个</span><span class="name">NGT-AI</span></a>
+    <a href="../index.html#projects"><span class="label">回到全部 →</span><span class="name">项目列表</span></a>
+  </nav>
+
+</main>
+
+<footer class="foot">
+  <div class="shell foot__inner">
+    <span>© 2026 薛豪楠 · Hao-Nan Xue</span>
+    <span>纯静态 · 无追踪 · 无 Cookie</span>
+  </div>
+</footer>
+
+<script>
+  const nav = document.getElementById('nav');
+  const onScroll = () => nav.classList.toggle('is-scrolled', window.scrollY > 8);
+  document.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+</script>
+
+</body>
+</html>

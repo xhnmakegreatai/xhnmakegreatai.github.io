@@ -40,13 +40,12 @@
     <h1 class="hero__title">把客户的真实痛点,<br />做成能用的 AI 系统。</h1>
     <div class="hero__sub">
       <span class="name">薛豪楠 · 懂业务、能动手的 AI 产品 / 解决方案工程师</span>
-      过去一年独立交付 5 个 AI 系统——从跟客户聊需求、做产品取舍,<br />
-      到亲手写出来、部署上线。我尤其在意一件别人常忽略的事:<br />
-      让 AI 的判断可被验证、可被信任。
+      过去一年我自己做了 5 个 AI 系统,从跟客户聊需求、做产品取舍,<br />
+      到亲手写出来、部署上线。我最在意一件常被忽略的事:<br />
+      让 AI 的判断能被验证,也知道它什么时候不该被信任。
     </div>
     <div class="hero__actions">
       <a class="btn-pill" href="#projects">查看项目</a>
-      <a class="btn-pill btn-pill--ghost" href="assets/resume.pdf" download="薛豪楠-简历.pdf">下载简历</a>
       <a class="cta" href="about.html">了解我</a>
     </div>
   </section>
@@ -67,7 +66,7 @@
             <span class="deployed">v1 已部署</span><span>多智能体重构</span><span>端到端交付</span>
           </div>
           <div class="card__name">amzagent<em>亚马逊关键词分析 Agent 系统</em></div>
-          <p class="card__oneliner">把亚马逊运营 3–5 天的关键词分析,压缩为约 30 分钟的 Agent 系统——先交付能用的 v1,再重构成会自我把关的多智能体 v2。</p>
+          <p class="card__oneliner">把亚马逊运营 3–5 天的关键词分析压到约 30 分钟。先交付了能用的 v1,再重构成会自我把关的多智能体 v2。</p>
           <p class="card__desc">v1 一个人跑通端到端(需求 → 设计 → 开发 → 部署 → 客户交接),已在真实客户场景部署使用。v2 吸收使用反馈 + 最新 Agent 范式(Google ADK 多智能体 / MCP / 评估审计)重构为多租户系统,并做了四轮真实故障注入验证的生产加固;作为 Kaggle AI Agents Capstone 提交,仍在优化中。</p>
           <span class="card__arrow"></span>
         </a>
@@ -75,11 +74,11 @@
         <!-- Two-up -->
         <a class="card" href="projects/policy-observer.html">
           <div class="card__tags">
-            <span>跨国政策研判</span><span>双引擎架构</span>
+            <span>跨国政策研判</span><span>生产级 RAG</span><span>可信度工程</span>
           </div>
-          <div class="card__name">policy-observer<em>双引擎跨国政策研判</em></div>
-          <p class="card__oneliner">国产模型解读国内政策,海外模型理解地缘叙事,综合层做交叉研判。</p>
-          <p class="card__desc">为政策敏感行业设计的多 Agent 研判系统,高度解耦,支持按需订阅「国内观察 / 全球观察 / 综合研判」。</p>
+          <div class="card__name">policy-observer<em>可信的跨国政策研判</em></div>
+          <p class="card__oneliner">双引擎交叉研判加生产级 RAG,把可信做进检索和研判,并用评测证明。</p>
+          <p class="card__desc">混合检索 + 多语言语义闸门 / 无据熔断 + 分层评测(研判忠实度 0.93、引用准确 0.83);政策关系图多跳、每日增量融合知识库保鲜。</p>
           <span class="card__arrow"></span>
         </a>
 
@@ -88,8 +87,18 @@
             <span>多 Agent 协同</span><span>开源</span>
           </div>
           <div class="card__name">NGT-AI<em>多 Agent 协同决策系统</em></div>
-          <p class="card__oneliner">把社会学的名义小组技术(NGT)系统化应用到多 LLM 协同决策——从机制上对抗单模型偏见。</p>
+          <p class="card__oneliner">把社会学的名义小组技术(NGT)系统化用到多 LLM 协同决策,从机制上对抗单模型偏见。</p>
           <p class="card__desc">6 阶段结构化讨论 + 强制异构模型:4 个不同厂商的 AI 独立产出 → 交叉评分 → 立场表态 → 综合裁定。</p>
+          <span class="card__arrow"></span>
+        </a>
+
+        <a class="card" href="projects/hercycle.html" style="grid-column: 1 / -1;">
+          <div class="card__tags">
+            <span>ToC 产品设计</span><span>情感科技</span><span>个人项目</span>
+          </div>
+          <div class="card__name">HerCycle<em>情侣周期 AI 陪伴小程序</em></div>
+          <p class="card__oneliner">她记录、他只读同步,AI 把「她现在的状态」翻译成男方能直接照做的 Do / Don't。</p>
+          <p class="card__desc">一次「为低意愿用户做产品」的设计:不对称信息架构(她 4 区 / 他 2 屏)、女方数据主权、双向平权、以及把「AI 建议可被信任」(不静默兜底 + 医疗红线)写进系统。个人 MVP,未正式上线。</p>
           <span class="card__arrow"></span>
         </a>
 
@@ -101,7 +110,7 @@
               <span class="card-sm__ext">GitHub ›</span>
             </div>
             <div class="card-sm__tags"><span>个人产品</span><span>存在主义日志</span></div>
-            <p class="card-sm__oneliner">把存在主义的「做你自己」翻译成数学公式——用 Embedding 和余弦相似度,量化每个行为离「本我」有多远。</p>
+            <p class="card-sm__oneliner">把存在主义的「做你自己」翻译成数学公式,用 Embedding 和余弦相似度算出每个行为离「本我」有多远。</p>
           </a>
           <a class="card-sm" href="https://github.com/xhnmakegreatai/yuanmei" target="_blank" rel="noopener">
             <div class="card-sm__head">
@@ -109,7 +118,7 @@
               <span class="card-sm__ext">GitHub ›</span>
             </div>
             <div class="card-sm__tags"><span>AI + 古典文学</span><span>学术辅助</span></div>
-            <p class="card-sm__oneliner">用 LLM 自动分类清代诗人袁枚 4480 首诗的山水诗类型——探索 AI 在传统人文研究中的辅助边界。</p>
+            <p class="card-sm__oneliner">用 LLM 自动分类清代诗人袁枚 4480 首诗的山水诗类型,借此摸索 AI 在传统人文研究里的辅助边界。</p>
           </a>
         </div>
 
@@ -124,9 +133,9 @@
         <h2 class="section__title">关于我</h2>
       </div>
       <div class="about-summary">
-        <p>我做的不是 AI 应用,是把不同行业的真实工作流「翻译」成 AI Agent 工作流。</p>
-        <p>算法和代码正在平权,真正稀缺的是另一种人:听得懂客户、做得出产品取舍、还能亲手把方案交付落地。我想做的,就是这座连接技术与业务的桥。</p>
-        <p>而我最在意、也最少有人做好的一件事,是让 AI 的判断「可被信任」——知道它什么时候不该被信任,并把这件事做进系统里。这正是产品经理与解决方案工程师真正稀缺的能力。</p>
+        <p>我做的不完全是 AI 应用,更多是把不同行业里真实的工作流,翻译成 AI Agent 能跑的工作流。</p>
+        <p>写代码和调模型的门槛在快速下降,反而稀缺的是这样一种人:听得懂客户在说什么、拿得准该做什么不该做什么,还能自己把方案落地。我想做的,就是技术和业务中间这块。</p>
+        <p>我最在意的一件事,是让 AI 的判断能被信任:知道它什么时候不该被信任,并把这条做进系统里。这件事很少有人真做好,而它恰恰是产品经理和解决方案工程师稀缺的能力。</p>
         <p class="about-summary__more">
           <a class="more" href="about.html">完整自我介绍 ›</a>
           <a class="more" href="agent.html">我对 Agent 的理解 + 技术手册 ›</a>
